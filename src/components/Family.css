@@ -1,0 +1,180 @@
+.family-section {
+  background: var(--color-bg-dark);
+  padding-bottom: var(--space-4xl);
+}
+
+.family-glow {
+  position: absolute;
+  bottom: 20%;
+  right: -80px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(212, 167, 116, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Dogs grid */
+.dogs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.dog-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-xl);
+  gap: var(--space-md);
+}
+
+.dog-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--color-border);
+}
+
+.dog-avatar-emoji {
+  font-size: 2rem;
+}
+
+.dog-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.dog-name {
+  font-size: 1.3rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.dog-trait {
+  font-size: 1rem;
+  color: var(--color-primary-light);
+}
+
+.dog-desc {
+  font-size: 0.9rem;
+}
+
+.dog-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 120px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-subtle);
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.dog-photo-placeholder span {
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.dog-photo-placeholder p {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* Breed badge */
+.breed-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  border-color: rgba(212, 167, 116, 0.2);
+}
+
+.breed-badge span {
+  font-size: 1.3rem;
+}
+
+.breed-badge p {
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: var(--color-gold-light);
+}
+
+/* Parents */
+.parents-section {
+  margin-top: var(--space-xl);
+}
+
+.parents-title {
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--color-gold-light);
+  margin-bottom: var(--space-xl);
+}
+
+.parents-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.parent-card {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.parent-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.parent-card h4 {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.parent-role {
+  font-size: 0.8rem;
+  color: var(--color-primary-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.parent-desc {
+  font-size: 0.8rem;
+}
+
+@media (min-width: 500px) {
+  .dogs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .dog-card {
+    padding: var(--space-2xl);
+  }
+
+  .parents-grid {
+    gap: var(--space-lg);
+  }
+}

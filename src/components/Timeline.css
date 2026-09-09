@@ -1,0 +1,215 @@
+.timeline-section {
+  background: var(--color-bg-dark);
+  padding-bottom: var(--space-4xl);
+}
+
+.timeline-glow {
+  position: absolute;
+  top: 30%;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(212, 167, 116, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Start card */
+.timeline-start {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-xl);
+  border: 1px solid rgba(212, 119, 155, 0.3);
+  background: rgba(212, 119, 155, 0.08);
+}
+
+.timeline-start-emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-start h3 {
+  font-size: 1.3rem;
+  color: var(--color-primary-light);
+  margin-bottom: var(--space-xs);
+}
+
+.timeline-start-text {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+
+/* Timeline container */
+.timeline-container {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-primary),
+    var(--color-gold),
+    var(--color-primary-dark),
+    transparent
+  );
+  opacity: 0.4;
+}
+
+/* Month group */
+.timeline-month-group {
+  margin-bottom: var(--space-2xl);
+}
+
+.timeline-month-label {
+  position: relative;
+  margin-bottom: var(--space-lg);
+  margin-left: -30px;
+}
+
+.timeline-month-label span {
+  display: inline-block;
+  background: var(--gradient-primary);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Timeline item */
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-xl);
+}
+
+/* Timeline dot */
+.timeline-dot {
+  position: absolute;
+  left: -30px;
+  top: 16px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  z-index: 2;
+}
+
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 10px rgba(212, 119, 155, 0.5);
+  z-index: -1;
+}
+
+.timeline-item-highlight .timeline-dot::before {
+  width: 14px;
+  height: 14px;
+  background: var(--color-gold);
+  box-shadow: 0 0 15px rgba(212, 167, 116, 0.6);
+}
+
+/* Timeline card */
+.timeline-card {
+  padding: var(--space-lg);
+}
+
+.timeline-date {
+  font-size: 0.75rem;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.timeline-title {
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin: var(--space-xs) 0 var(--space-sm);
+  font-weight: 600;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  margin-bottom: var(--space-md);
+}
+
+/* Image placeholder */
+.timeline-image {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: var(--space-sm);
+}
+
+.timeline-image img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.timeline-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-subtle);
+  font-size: 0.8rem;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.timeline-image-placeholder span {
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.timeline-image-placeholder p {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* Highlight item */
+.timeline-item-highlight .timeline-card {
+  border-color: rgba(212, 167, 116, 0.3);
+  background: rgba(212, 167, 116, 0.08);
+}
+
+@media (min-width: 768px) {
+  .timeline-container {
+    padding-left: 40px;
+  }
+
+  .timeline-line {
+    left: 15px;
+  }
+
+  .timeline-dot {
+    left: -38px;
+  }
+
+  .timeline-card {
+    padding: var(--space-xl);
+  }
+
+  .timeline-image img {
+    height: 200px;
+  }
+}

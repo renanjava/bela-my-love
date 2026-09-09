@@ -1,0 +1,115 @@
+.letter-section {
+  background: var(--color-bg-darker);
+  position: relative;
+}
+
+.letter-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 119, 155, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.section-icon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+  filter: drop-shadow(0 0 15px rgba(212, 119, 155, 0.3));
+}
+
+/* Envelope */
+.letter-envelope {
+  position: relative;
+  perspective: 1000px;
+}
+
+.letter-paper {
+  background: linear-gradient(170deg, #2D1F28 0%, #231920 40%, #1E161B 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl) var(--space-xl);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+}
+
+/* Paper texture effect */
+.letter-paper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Letter header */
+.letter-header {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(212, 119, 155, 0.1);
+}
+
+.letter-date {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-text-subtle);
+  margin-bottom: var(--space-md);
+}
+
+.letter-dear {
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  color: var(--color-primary-light);
+  font-weight: 600;
+}
+
+/* Letter body */
+.letter-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.letter-paragraph {
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+/* Signature */
+.letter-signature {
+  text-align: right;
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(212, 119, 155, 0.1);
+}
+
+.letter-signature p:first-child {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.letter-sign {
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  color: var(--color-primary-light);
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .letter-paper {
+    padding: var(--space-3xl);
+  }
+}

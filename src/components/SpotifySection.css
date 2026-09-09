@@ -1,0 +1,66 @@
+.spotify-section {
+  background: var(--color-bg-darker);
+  padding-bottom: var(--space-4xl);
+}
+
+.spotify-glow {
+  position: absolute;
+  top: 40%;
+  left: -100px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(30, 215, 96, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.spotify-card {
+  overflow: hidden;
+}
+
+.spotify-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.spotify-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1DB954;
+}
+
+.spotify-note {
+  font-size: 0.8rem;
+}
+
+.spotify-embed-wrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #000;
+}
+
+.spotify-iframe {
+  display: block;
+  border-radius: var(--radius-md);
+  min-height: 380px;
+}
+
+.spotify-footer-text {
+  text-align: center;
+  color: var(--color-primary-light);
+  font-size: 1.1rem;
+  margin-top: var(--space-xl);
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .spotify-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,11 @@
+/* App CSS pode ficar vazio, pois usamos index.css e CSS Modules por componente */
+.app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main-content {
+  position: relative;
+  z-index: 10;
+}
