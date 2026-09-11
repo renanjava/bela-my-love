@@ -13,7 +13,7 @@ import './SpotifySection.css';
  * https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M
  */
 
-const PLAYLIST_URL = 'https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M'; // ← TROQUE PELO SEU LINK
+const PLAYLIST_URL = 'https://open.spotify.com/playlist/37pxoq5fxyYdoZ5D94Zs88?si=fa3e3106de7d463e&pt=2e9fec778e61bac68f71f13d4d041267';
 
 export default function SpotifySection() {
   // Extract playlist ID from URL
