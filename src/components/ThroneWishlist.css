@@ -1,0 +1,123 @@
+.throne-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.throne-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(255, 105, 180, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.throne-wishlists-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.throne-user-card {
+  padding: 2.2rem 1.8rem;
+  border-radius: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.throne-user-card:hover {
+  transform: translateY(-6px);
+}
+
+.throne-user-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffd700;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.throne-avatar {
+  font-size: 3rem;
+  margin-bottom: 0.8rem;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 215, 0, 0.12);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.throne-user-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+  color: #fff;
+}
+
+.throne-user-desc {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin-bottom: 1.8rem;
+  flex-grow: 1;
+}
+
+.btn-throne {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  font-weight: 700;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-throne-bela {
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(255, 117, 140, 0.4);
+}
+
+.btn-throne-bela:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 25px rgba(255, 117, 140, 0.6);
+}
+
+.btn-throne-renan {
+  background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+  color: #1a1a2e;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.35);
+}
+
+.btn-throne-renan:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
+}
+
+.throne-input-hint {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.throne-input-hint code {
+  color: #ffd700;
+}

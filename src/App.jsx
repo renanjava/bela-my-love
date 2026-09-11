@@ -6,7 +6,8 @@ import Birthday from './components/Birthday';
 import Family from './components/Family';
 import SpotifySection from './components/SpotifySection';
 import Gallery from './components/Gallery';
-import NotionPlans from './components/NotionPlans';
+import PinterestCollection from './components/PinterestCollection';
+import ThroneWishlist from './components/ThroneWishlist';
 import FutureTogether from './components/FutureTogether';
 import Footer from './components/Footer';
 
@@ -25,7 +26,8 @@ function App() {
         <Family />
         <SpotifySection />
         <Gallery />
-        <NotionPlans />
+        <PinterestCollection />
+        <ThroneWishlist />
         <FutureTogether />
       </main>
 

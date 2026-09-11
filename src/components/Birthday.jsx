@@ -69,7 +69,7 @@ export default function Birthday() {
     { number: 13, text: 'Razão nº 13 - Ela me faz ficar menos tímido em ambientes que eu ficaria se eu estivesse sozinho' },
     { number: 14, text: 'Razão nº 14 - Ela gosta de fotinhas de casal aesthetic e eu acho isso lindo demais' },
     { number: 15, text: 'Razão nº 15 - Ela é esquisita do jeitinho que eu gosto e se ama do jeitinho que ela é' },
-    { number: 16, text: 'Razão nº 16 - Ela é cheirosa mesmo sem passar nada no corpo, eu amo o cheiro natural dela' },
+    { number: 16, text: 'Razão nº 16 - Ela é atenciosa e percebe detalhes que não percebo e me ajuda a corrigir' },
     { number: 17, text: 'Razão nº 17 - Ela é maravilhosa mesmo sem maquiagem e com o cabelo todo bagunçado' },
     { number: 18, text: 'Razão nº 18 - Ela tira meu sono quando a gente faz Facetime juntos de madrugada' },
     { number: 19, text: 'Razão nº 19 - Ela é amorosa e carinhosa todos os dias e ainda normaliza agir como momoladinhos' },
@@ -79,7 +79,7 @@ export default function Birthday() {
     { number: 23, text: 'Razão nº 23 - Ela me inspira a ir treinar todos os dias e ter um corpo melhor' },
     { number: 24, text: 'Razão nº 24 - Ela me mostrou que pra evoluir profissionalmente, primeiro é necessário evoluir pessoalmente' },
     { number: 25, text: 'Razão nº 25 - Ela me faz querer ser uma pessoa melhor todos os dias' },
-    { number: 26, text: 'Razão nº 26 - Ela me mostrou que é possível confiar em alguém ' },
+    { number: 26, text: 'Razão nº 26 - Ela me mostrou que é possível confiar em alguém e construir um relacionamento' },
   ];
 
   return (
