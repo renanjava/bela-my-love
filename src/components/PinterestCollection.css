@@ -5,178 +5,143 @@
 
 .pinterest-glow {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(230, 0, 35, 0.12) 0%, rgba(255, 182, 193, 0) 70%);
+  background: radial-gradient(circle, rgba(230, 0, 35, 0.15) 0%, rgba(255, 182, 193, 0) 70%);
   pointer-events: none;
   z-index: 0;
 }
 
-.pinterest-photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.8rem;
-  margin-top: 1.5rem;
+.pinterest-card {
+  padding: 2rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.pinterest-pin-card {
-  border-radius: 20px;
-  overflow: hidden;
+.pinterest-header {
   display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.pin-image-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.pin-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.pinterest-pin-card:hover .pin-img {
-  transform: scale(1.05);
-}
-
-.pin-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
   gap: 0.8rem;
-  background: linear-gradient(135deg, rgba(230, 0, 35, 0.08) 0%, rgba(255, 105, 180, 0.08) 100%);
+}
+
+.pinterest-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  background: rgba(230, 0, 35, 0.15);
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  border: 1px solid rgba(230, 0, 35, 0.3);
+}
+
+.pinterest-subtitle-tag {
+  font-size: 0.88rem;
   color: rgba(255, 255, 255, 0.7);
-}
-
-.pin-placeholder-icon {
-  font-size: 3rem;
-}
-
-.pin-placeholder-tag {
-  font-size: 0.85rem;
-  color: #ff80ab;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.06);
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
 }
 
-.pin-badge {
+/* Clicável gigante */
+.pinterest-clickable-gallery {
+  display: block;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid rgba(230, 0, 35, 0.3);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.pinterest-clickable-gallery:hover {
+  transform: scale(1.015);
+  box-shadow: 0 12px 35px rgba(230, 0, 35, 0.4);
+}
+
+/* Grid de fotos em estilo mosaico */
+.pinterest-grid-preview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px;
+}
+
+@media (max-width: 600px) {
+  .pinterest-grid-preview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pinterest-grid-item {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.pinterest-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.pinterest-clickable-gallery:hover .pinterest-grid-item img {
+  transform: scale(1.08);
+}
+
+/* Overlay no Hover */
+.pinterest-gallery-overlay {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.25rem 0.7rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.pin-info {
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.pin-category {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: #ff758c;
-}
-
-.pin-title {
-  font-size: 1.1rem;
-  color: #fff;
-  font-weight: 600;
-}
-
-.pin-desc {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.4;
-}
-
-/* Lightbox Modal */
-.lightbox-overlay {
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(12px);
-  z-index: 1000;
+  background: radial-gradient(circle, rgba(230, 0, 35, 0.35) 0%, rgba(0, 0, 0, 0.75) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-.lightbox-content {
-  position: relative;
-  max-width: 500px;
-  width: 100%;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+.pinterest-clickable-gallery:hover .pinterest-gallery-overlay {
+  opacity: 1;
 }
 
-.lightbox-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.6);
+.pinterest-overlay-badge {
+  background: linear-gradient(135deg, #e60023 0%, #ad081b 100%);
   color: #fff;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 30px;
+  box-shadow: 0 8px 25px rgba(230, 0, 35, 0.6);
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
 }
 
-.lightbox-full-img {
-  width: 100%;
-  max-height: 65vh;
-  object-fit: cover;
+.pinterest-clickable-gallery:hover .pinterest-overlay-badge {
+  transform: translateY(0);
 }
 
-.lightbox-details {
-  padding: 1.5rem;
-}
-
-.lightbox-details h3 {
-  font-size: 1.3rem;
-  margin: 0.3rem 0;
-  color: #fff;
-}
-
-.lightbox-details p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.95rem;
-  line-height: 1.5;
+.pinterest-footer-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.15rem;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.8));
 }
