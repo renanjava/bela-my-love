@@ -53,10 +53,34 @@ export default function Birthday() {
     return () => observer.disconnect();
   }, []);
 
-  const reasons = Array.from({ length: 26 }, (_, i) => ({
-    number: i + 1,
-    text: `[TEMPLATE] Razão nº ${i + 1} para amar a Isabela — escreva aqui...`,
-  }));
+  const reasons = [
+    { number: 1, text: 'Razão nº 1 - Ela me acolhe tão bem que não existe nada igual no mundo' },
+    { number: 2, text: 'Razão nº 2 - Ela me faz sorrir quando estou na academia enquanto converso com ela' },
+    { number: 3, text: 'Razão nº 3 - Ela tem cabelos, olhos, lábios e nariz perfeitos, e ainda tem a pintinha em cima da boca que deixa ela ainda mais linda' },
+    { number: 4, text: 'Razão nº 4 - Ela me deixa tão confortável que consigo ser quem eu sou sem nenhuma trava' },
+    { number: 5, text: 'Razão nº 5 - Ela é uma pessoa muito esforçada e me dá orgulho sempre' },
+    { number: 6, text: 'Razão nº 6 - Ela me respeita e entende meus limites quando a gente vai sair de casa' },
+    { number: 7, text: 'Razão nº 7 - Ela gosta de algumas músicas minhas' },
+    { number: 8, text: 'Razão nº 8 - Ela às vezes joga alguns joguinhos comigo' },
+    { number: 9, text: 'Razão nº 9 - Ela tem visão de futuro e pretende construir uma família' },
+    { number: 10, text: 'Razão nº 10 - Ela é a pessoa mais fofa do mundo quando tá morrendo de sono' },
+    { number: 11, text: 'Razão nº 11 - Ela me ajuda a escolher roupas pra mim comprar' },
+    { number: 12, text: 'Razão nº 12 - Ela me acalma quando eu estou muito afobado ou ansioso' },
+    { number: 13, text: 'Razão nº 13 - Ela me faz ficar menos tímido em ambientes que eu ficaria se eu estivesse sozinho' },
+    { number: 14, text: 'Razão nº 14 - Ela gosta de fotinhas aesthetics' },
+    { number: 15, text: 'Razão nº 15 - Ela é esquisita do jeitinho que eu gosto' },
+    { number: 16, text: 'Razão nº 16 - Ela é cheirosa mesmo sem passar nada no corpo, eu amo o cheiro natural dela' },
+    { number: 17, text: 'Razão nº 17 - Ela é maravilhosa mesmo sem maquiagem e com o cabelo todo bagunçado' },
+    { number: 18, text: 'Razão nº 18 - Ela tira meu sono quando a gente faz Facetime juntos de madrugada' },
+    { number: 19, text: 'Razão nº 19 - Ela é amorosa e carinhosa todos os dias e ainda normaliza agir como momoladinhos' },
+    { number: 20, text: 'Razão nº 20 - Ela me ensina tudo o que eu não sei e peço para ela, mesmo que ela ache que é coisa besta' },
+    { number: 21, text: 'Razão nº 21 - Ela tem paciência comigo e não me julga quando eu' },
+    { number: 22, text: 'Razão nº 22 - Ela é aberta a receber feedbacks e dar opiniões sinceras sobre mim' },
+    { number: 23, text: 'Razão nº 23 - Ela me inspira a ir treinar todos os dias' },
+    { number: 24, text: 'Razão nº 24 - Ela me faz cuidar mais de mim mesmo que indiretamente' },
+    { number: 25, text: 'Razão nº 25 - Ela me faz querer ser uma pessoa melhor todos os dias' },
+    { number: 26, text: 'Razão nº 26 - Ela me mostrou que o amor existe e é lindo, mesmo eu estando totalmente inseguro no início' },
+  ];
 
   return (
     <section className="section birthday-section" ref={sectionRef} id="birthday">

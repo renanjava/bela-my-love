@@ -84,7 +84,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          Uma carta de amor em forma de app
+          Uma homenagem da nossa história até hoje
         </motion.p>
 
         {/* Divider */}
