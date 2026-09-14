@@ -24,6 +24,28 @@
   pointer-events: none;
 }
 
+/* Vídeo de finalização */
+.future-video-wrap {
+  text-align: center;
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.future-video {
+  width: 100%;
+  max-width: 640px;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto var(--space-md);
+  border: 1px solid var(--color-border);
+}
+
+.future-video-caption {
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+}
+
 /* Future timeline */
 .future-timeline {
   display: flex;
@@ -143,5 +165,74 @@
     width: 56px;
     height: 56px;
     font-size: 2rem;
+  }
+}
+
+/* One Piece themed closing */
+/* One Piece themed closing */
+.onepiece-closing {
+  position: relative;
+  border: 2px dashed rgba(212, 167, 116, 0.5);
+  background:
+    linear-gradient(145deg, rgba(20, 14, 8, 0.82) 0%, rgba(30, 18, 10, 0.78) 100%),
+    url('/treasure/onepiece.png') center / cover no-repeat;
+  overflow: hidden;
+}
+
+.onepiece-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 167, 116, 0.15);
+  border: 1px dashed var(--color-gold);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+}
+
+.strawhat-icon {
+  font-size: 1.3rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.onepiece-ribbon {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold-light);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.onepiece-treasure {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.onepiece-title {
+  color: var(--color-gold-light);
+}
+
+.onepiece-footer {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+  font-size: 1.4rem;
+  opacity: 0.85;
+}
+
+.onepiece-compass {
+  display: inline-block;
+  animation: spinCompass 6s linear infinite;
+}
+
+@keyframes spinCompass {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

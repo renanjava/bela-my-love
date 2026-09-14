@@ -9,14 +9,14 @@ export default function Family() {
   const dogs = [
     {
       name: 'Scooby',
-      trait: 'O pretinho charmoso',
+      trait: 'O pretinho fofo',
       emoji: '🖤',
       color: '#2D2D2D',
       description: '[TEMPLATE] Escreva algo fofo sobre o Scooby, o salsicha todo preto...',
     },
     {
       name: 'Tobias',
-      trait: 'O mofadinho fofo',
+      trait: 'O autistinha especial',
       emoji: '🤎',
       color: '#8B6B4E',
       description: '[TEMPLATE] Escreva algo fofo sobre o Tobias, o salsicha mofadinho...',

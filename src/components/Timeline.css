@@ -1,215 +1,490 @@
 .timeline-section {
-  background: var(--color-bg-dark);
+  background:
+    linear-gradient(180deg,
+      rgba(18, 10, 14, 0.55) 0%,
+      rgba(18, 10, 14, 0.82) 35%,
+      var(--color-bg-dark) 90%),
+    url('/timeline/wallpaper.png') center top / cover no-repeat;
+  background-attachment: scroll;
   padding-bottom: var(--space-4xl);
+  position: relative;
+  overflow: hidden;
 }
 
 .timeline-glow {
   position: absolute;
-  top: 30%;
+  top: 20%;
   right: -100px;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(212, 167, 116, 0.06) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 167, 116, 0.08) 0%, rgba(212, 119, 155, 0.04) 50%, transparent 70%);
   pointer-events: none;
 }
 
-/* Start card */
-.timeline-start {
+/* Background floating balloons */
+.up-balloons-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.bg-balloon {
+  position: absolute;
+  font-size: 2.2rem;
+  opacity: 0.15;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+  animation: floatUpSlow 18s ease-in-out infinite alternate;
+}
+
+.balloon-red {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.balloon-yellow {
+  top: 35%;
+  right: 4%;
+  animation-delay: 2s;
+}
+
+.balloon-blue {
+  top: 60%;
+  left: 8%;
+  animation-delay: 4s;
+}
+
+.balloon-purple {
+  top: 78%;
+  right: 6%;
+  animation-delay: 1s;
+}
+
+.balloon-green {
+  top: 45%;
+  left: 88%;
+  animation-delay: 3s;
+}
+
+.balloon-orange {
+  top: 25%;
+  right: 12%;
+  animation-delay: 5s;
+}
+
+@keyframes floatUpSlow {
+  0% {
+    transform: translateY(0px) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-25px) rotate(5deg);
+  }
+
+  100% {
+    transform: translateY(-50px) rotate(-3deg);
+  }
+}
+
+/* Header & Adventure Badge */
+.adventure-title-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adventure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 167, 116, 0.15);
+  border: 1px dashed var(--color-gold);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.grape-soda-pin {
+  font-size: 1.2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.badge-ribbon {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold-light);
+  font-weight: 700;
+}
+
+.adventure-icon {
+  font-size: 2.2rem;
+  display: inline-block;
+  margin-bottom: var(--space-xs);
+}
+
+.adventure-header-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  letter-spacing: 0.02em;
+}
+
+.adventure-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-gold-light);
+  margin-top: 4px;
+}
+
+.adventure-stitched-line {
+  width: 120px;
+  height: 2px;
+  border-bottom: 2px dashed rgba(212, 167, 116, 0.4);
+  margin: var(--space-md) auto 0;
+}
+
+/* Cover Card (Start Card) */
+.adventure-cover-card {
+  position: relative;
   text-align: center;
-  margin-bottom: var(--space-2xl);
-  padding: var(--space-xl);
-  border: 1px solid rgba(212, 119, 155, 0.3);
-  background: rgba(212, 119, 155, 0.08);
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-xl) var(--space-2xl);
+  background: linear-gradient(135deg, rgba(60, 40, 50, 0.85) 0%, rgba(35, 22, 30, 0.95) 100%);
+  border: 2px solid rgba(212, 167, 116, 0.4);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(212, 167, 116, 0.1);
+  overflow: hidden;
+}
+
+.adventure-stamp {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  border: 1px solid rgba(212, 167, 116, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+  transform: rotate(4deg);
 }
 
 .timeline-start-emoji {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: var(--space-sm);
+  font-size: 2.5rem;
+  display: inline-block;
+  margin-bottom: var(--space-xs);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
-.timeline-start h3 {
-  font-size: 1.3rem;
-  color: var(--color-primary-light);
+.adventure-cover-card h3 {
+  font-size: 1.4rem;
+  color: var(--color-gold-light);
   margin-bottom: var(--space-xs);
+  font-family: var(--font-display);
 }
 
 .timeline-start-text {
   color: var(--color-text-muted);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 
-/* Timeline container */
-.timeline-container {
+.house-balloons-mini {
+  margin-top: var(--space-sm);
+  font-size: 1.4rem;
+  opacity: 0.9;
+}
+
+/* Timeline Container */
+.adventure-timeline {
   position: relative;
-  padding-left: 30px;
-}
-
-.timeline-line {
-  position: absolute;
-  left: 10px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    var(--color-primary),
-    var(--color-gold),
-    var(--color-primary-dark),
-    transparent
-  );
-  opacity: 0.4;
-}
-
-/* Month group */
-.timeline-month-group {
-  margin-bottom: var(--space-2xl);
-}
-
-.timeline-month-label {
-  position: relative;
-  margin-bottom: var(--space-lg);
-  margin-left: -30px;
-}
-
-.timeline-month-label span {
-  display: inline-block;
-  background: var(--gradient-primary);
-  color: var(--color-text);
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-full);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/* Timeline item */
-.timeline-item {
-  position: relative;
-  margin-bottom: var(--space-xl);
-}
-
-/* Timeline dot */
-.timeline-dot {
-  position: absolute;
-  left: -30px;
-  top: 16px;
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
+  padding-left: 32px;
   z-index: 2;
 }
 
-.timeline-dot::before {
-  content: '';
+/* String connecting the balloon pins */
+.adventure-string {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  box-shadow: 0 0 10px rgba(212, 119, 155, 0.5);
-  z-index: -1;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+      rgba(212, 167, 116, 0.8),
+      rgba(212, 119, 155, 0.6),
+      rgba(212, 167, 116, 0.8),
+      transparent);
+  box-shadow: 0 0 8px rgba(212, 167, 116, 0.4);
 }
 
-.timeline-item-highlight .timeline-dot::before {
+/* Month label (Tape Effect) */
+.adventure-chapter-tag {
+  position: relative;
+  margin-bottom: var(--space-2xl);
+  margin-left: -32px;
+  display: flex;
+  align-items: center;
+}
+
+.adventure-chapter-tag span:not(.tape-effect) {
+  display: inline-block;
+  background: linear-gradient(135deg, #7C4558 0%, #A8567A 50%, #8C4E68 100%);
+  color: #FFF5F7;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 6px 20px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+}
+
+/* Washi Tape styling */
+.tape-effect {
+  position: absolute;
+  height: 14px;
+  width: 32px;
+  background: rgba(232, 201, 160, 0.4);
+  backdrop-filter: blur(2px);
+  border: 1px stroke rgba(255, 255, 255, 0.2);
+  z-index: 3;
+}
+
+.left-tape {
+  left: 8px;
+  transform: rotate(-15deg);
+}
+
+.right-tape {
+  right: -10px;
+  transform: rotate(12deg);
+}
+
+/* Pin dot */
+.adventure-pin {
+  position: absolute;
+  left: -32px;
+  top: 14px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.pin-head {
+  position: absolute;
+  top: -12px;
+  font-size: 1rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.dot-emoji {
+  font-size: 1rem;
+  background: rgba(45, 31, 40, 0.9);
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Scrapbook Card */
+.adventure-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(42, 28, 38, 0.95) 0%, rgba(24, 16, 22, 0.95) 100%);
+  border: 1px solid rgba(212, 167, 116, 0.25);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.adventure-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 167, 116, 0.2);
+}
+
+/* Photo Corners (Scrapbook look) */
+.photo-corner {
+  position: absolute;
   width: 14px;
   height: 14px;
-  background: var(--color-gold);
-  box-shadow: 0 0 15px rgba(212, 167, 116, 0.6);
+  border-color: rgba(212, 167, 116, 0.5);
+  border-style: solid;
+  pointer-events: none;
 }
 
-/* Timeline card */
-.timeline-card {
-  padding: var(--space-lg);
+.top-left {
+  top: 6px;
+  left: 6px;
+  border-width: 2px 0 0 2px;
 }
 
-.timeline-date {
-  font-size: 0.75rem;
+.top-right {
+  top: 6px;
+  right: 6px;
+  border-width: 2px 2px 0 0;
+}
+
+.bottom-left {
+  bottom: 6px;
+  left: 6px;
+  border-width: 0 0 2px 2px;
+}
+
+.bottom-right {
+  bottom: 6px;
+  right: 6px;
+  border-width: 0 2px 2px 0;
+}
+
+.adventure-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xs);
+}
+
+.adventure-date {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
   color: var(--color-gold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-}
-
-.timeline-title {
-  font-size: 1.05rem;
-  color: var(--color-text);
-  margin: var(--space-xs) 0 var(--space-sm);
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.timeline-desc {
-  font-size: 0.9rem;
-  margin-bottom: var(--space-md);
+.special-stamp {
+  font-size: 0.65rem;
+  background: rgba(212, 119, 155, 0.2);
+  color: var(--color-primary-light);
+  border: 1px solid rgba(212, 119, 155, 0.4);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
-/* Image placeholder */
-.timeline-image {
-  border-radius: var(--radius-md);
+.adventure-item-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.adventure-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* Photo Frames inside Scrapbook */
+.adventure-photo-frame {
+  margin-top: var(--space-md);
+  border: 4px solid #F5EBE6;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  transform: rotate(-1deg);
   overflow: hidden;
-  margin-top: var(--space-sm);
 }
 
-.timeline-image img {
+.adventure-photo-frame img {
   width: 100%;
-  height: 160px;
+  height: 180px;
   object-fit: cover;
-  border-radius: var(--radius-md);
+  display: block;
 }
 
-.timeline-image-placeholder {
+.adventure-photo-placeholder {
+  margin-top: var(--space-md);
+  height: 110px;
+  border: 2px dashed rgba(212, 167, 116, 0.3);
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-sm);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100px;
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-md);
-  color: var(--color-text-subtle);
-  font-size: 0.8rem;
-  gap: var(--space-xs);
-  margin-top: var(--space-sm);
-}
-
-.timeline-image-placeholder span {
-  font-size: 1.5rem;
-  opacity: 0.5;
-}
-
-.timeline-image-placeholder p {
-  font-size: 0.75rem;
-  opacity: 0.6;
+  gap: 6px;
+  color: var(--color-gold-light);
+  opacity: 0.8;
 }
 
 /* Highlight item */
-.timeline-item-highlight .timeline-card {
-  border-color: rgba(212, 167, 116, 0.3);
+.timeline-item-highlight .adventure-card {
+  background: linear-gradient(145deg, rgba(60, 38, 48, 0.95) 0%, rgba(35, 20, 28, 0.95) 100%);
+  border-color: rgba(212, 167, 116, 0.6);
+}
+
+/* Footer Quote (UP Altas Aventuras) */
+.adventure-footer-quote {
+  margin-top: var(--space-3xl);
+  text-align: center;
+  padding: var(--space-xl);
   background: rgba(212, 167, 116, 0.08);
+  border: 1px dashed rgba(212, 167, 116, 0.3);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.quote-icon {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.quote-text {
+  font-size: 1.35rem;
+  color: var(--color-gold-light);
+  max-width: 480px;
+}
+
+.quote-author {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--color-primary-light);
+  text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+  .timeline-section {
+    background-attachment: fixed;
+  }
 }
 
 @media (min-width: 768px) {
-  .timeline-container {
-    padding-left: 40px;
+  .adventure-timeline {
+    padding-left: 45px;
   }
 
-  .timeline-line {
-    left: 15px;
+  .adventure-string {
+    left: 18px;
   }
 
-  .timeline-dot {
-    left: -38px;
+  .adventure-pin {
+    left: -40px;
   }
 
-  .timeline-card {
-    padding: var(--space-xl);
+  .adventure-header-title {
+    font-size: 3rem;
   }
 
-  .timeline-image img {
-    height: 200px;
+  .adventure-photo-frame img {
+    height: 220px;
   }
 }

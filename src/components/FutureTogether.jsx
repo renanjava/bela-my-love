@@ -92,23 +92,56 @@ export default function FutureTogether() {
           ))}
         </div>
 
+        {/* Vídeo de finalização */}
+        <ScrollReveal delay={0.3}>
+          <div className="future-video-wrap glass-card">
+            <video
+              className="future-video"
+              src="/futuretogether/video.mp4"
+              controls
+              playsInline
+              preload="metadata"
+            >
+              Seu navegador não suporta a reprodução deste vídeo.
+            </video>
+            <p className="template-text future-video-caption">
+              [TEMPLATE] Um vídeo especial pra guardar esse momento pra sempre...
+            </p>
+          </div>
+        </ScrollReveal>
+
         {/* Closing message */}
         <ScrollReveal delay={0.4}>
-          <div className="future-closing glass-card">
+          <div className="future-closing onepiece-closing glass-card">
+            <div className="onepiece-badge">
+              <span className="strawhat-icon" title="Chapéu de Palha">👒</span>
+              <span className="onepiece-ribbon">NAKAMA FOR LIFE</span>
+            </div>
+
             <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="closing-heart"
+              animate={{ rotate: [0, -8, 8, 0], y: [0, -6, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="closing-heart onepiece-treasure"
             >
-              ❤️
+              🏴‍☠️💰
             </motion.div>
-            <h3 className="text-script closing-title">
-              [TEMPLATE] Frase de fechamento épica e romântica...
+
+            <h3 className="text-script closing-title onepiece-title">
+              [TEMPLATE] "Eu vou ser o Rei dos Piratas!" — mas o meu One Piece eu já encontrei: você.
             </h3>
-            <p className="template-text closing-text">
-              [ESCREVA AQUI] Uma mensagem final poderosa sobre o amor de vocês 
-              e o futuro incrível que espera por vocês dois...
+
+            <p className="template-text closing-text onepiece-text">
+              [ESCREVA AQUI] Navegamos a Grand Line da vida como verdadeiros nakama, e não importa
+              quantas tempestades ou marinheiros tentem nos separar — nosso Going Merry sempre segue
+              em frente. O maior tesouro nunca esteve escondido em uma ilha perdida: ele estava em
+              cada dia ao seu lado. Rumo ao nosso próprio One Piece, juntos, até o fim da Grand Line...
             </p>
+
+            <div className="onepiece-footer">
+              <span className="onepiece-flag">🏴‍☠️</span>
+              <span className="onepiece-compass">🧭</span>
+              <span className="onepiece-flag">🏴‍☠️</span>
+            </div>
           </div>
         </ScrollReveal>
       </div>

@@ -56,9 +56,6 @@ export default function SpotifySection() {
                 </svg>
                 <span>Spotify</span>
               </div>
-              <p className="spotify-note template-text">
-                [TROQUE A URL DA PLAYLIST no topo do arquivo SpotifySection.jsx]
-              </p>
             </div>
 
             <div className="spotify-embed-wrapper">

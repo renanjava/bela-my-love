@@ -27,7 +27,6 @@ function App() {
         <SpotifySection />
         <Gallery />
         <PinterestCollection />
-        <ThroneWishlist />
         <FutureTogether />
       </main>
 
