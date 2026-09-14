@@ -1,6 +1,4 @@
 import ParticlesBg from './components/ParticlesBg';
-import Hero from './components/Hero';
-import LoveLetter from './components/LoveLetter';
 import Timeline from './components/Timeline';
 import Birthday from './components/Birthday';
 import Family from './components/Family';
@@ -9,6 +7,7 @@ import Gallery from './components/Gallery';
 import PinterestCollection from './components/PinterestCollection';
 import FutureTogether from './components/FutureTogether';
 import Footer from './components/Footer';
+import Hero from './components/Hero';
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
       {/* Main Content */}
       <main className="main-content">
         <Hero />
-        <LoveLetter />
         <Timeline />
         <Birthday />
         <Family />

@@ -3,6 +3,14 @@ import ScrollReveal from './ScrollReveal';
 import timelineData from '../data/timelineData';
 import './Timeline.css';
 
+const bgPhotos = [
+  { src: '/timeline/photo1.png', top: '5%', left: '15%' },
+  { src: '/timeline/photo2.png', top: '22%', left: '70%' },
+  { src: '/timeline/photo3.png', top: '42%', left: '20%' },
+  { src: '/timeline/photo4.png', top: '62%', left: '75%' },
+  { src: '/timeline/photo5.png', top: '82%', left: '25%' },
+];
+
 /**
  * Timeline — Linha do tempo interativa no estilo "Meu Livro de Aventuras" (Up: Altas Aventuras)
  */
@@ -22,7 +30,7 @@ export default function Timeline() {
   return (
     <section className="section timeline-section adventure-book-section" id="timeline">
       <div className="timeline-glow" />
-      
+
       {/* Floating UP Balloons in Background */}
       <div className="up-balloons-bg" aria-hidden="true">
         <span className="bg-balloon balloon-red">🎈</span>
@@ -36,10 +44,6 @@ export default function Timeline() {
       <div className="section-content">
         <ScrollReveal>
           <div className="section-title adventure-title-box">
-            <div className="adventure-badge">
-              <span className="grape-soda-pin" title="Grape Soda Badge 🍇">🍇</span>
-              <span className="badge-ribbon">SENIOR EXPLORER</span>
-            </div>
             <span className="section-icon adventure-icon">🎈📖</span>
             <h2 className="text-gradient adventure-header-title">Meu Livro de Aventuras</h2>
             <p className="section-subtitle text-script adventure-subtitle">
@@ -52,7 +56,6 @@ export default function Timeline() {
         {/* Início: dia que se conheceram */}
         <ScrollReveal delay={0.1}>
           <div className="timeline-start adventure-cover-card">
-            <div className="adventure-stamp">PG 01</div>
             <span className="timeline-start-emoji">🎈</span>
             <h3>26 de Junho de 2026</h3>
             <p className="text-script timeline-start-text">
@@ -106,7 +109,15 @@ export default function Timeline() {
                       <h4 className="timeline-title adventure-item-title">{item.title}</h4>
                       <p className="template-text timeline-desc adventure-desc">{item.description}</p>
 
-                      {item.image ? (
+                      {item.images && item.images.length > 0 ? (
+                        <div className="timeline-images-carousel">
+                          {item.images.map((imgSrc, imgIndex) => (
+                            <div key={imgIndex} className="timeline-image adventure-photo-frame">
+                              <img src={imgSrc} alt={`${item.title} - foto ${imgIndex + 1}`} />
+                            </div>
+                          ))}
+                        </div>
+                      ) : item.image ? (
                         <div className="timeline-image adventure-photo-frame">
                           <img src={item.image} alt={item.title} />
                         </div>
@@ -133,6 +144,29 @@ export default function Timeline() {
               <span className="quote-author">— Ellie</span>
             </div>
           </ScrollReveal>
+        </div>
+
+        <div className="timeline-photos-bg" aria-hidden="true">
+          {bgPhotos.map((photo) => (
+            <motion.img
+              key={photo.src}
+              src={photo.src}
+              alt=""
+              className="timeline-bg-photo"
+              style={{ top: photo.top, left: photo.left }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{
+                opacity: [0, 1, 1, 0],
+                scale: [0.9, 1, 1, 0.9],
+              }}
+              viewport={{ once: false, margin: '-150px' }}
+              transition={{
+                duration: 2.6,
+                times: [0, 0.15, 0.85, 1],
+                ease: 'easeInOut',
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -1,187 +1,126 @@
 .hero-section {
   position: relative;
-  min-height: 100dvh;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--space-xl) var(--space-lg);
   background: var(--gradient-hero);
   overflow: hidden;
+  padding: var(--space-2xl) var(--space-lg);
 }
 
-/* Glow decorations */
 .hero-glow {
   position: absolute;
-  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 119, 155, 0.12) 0%, transparent 70%);
   pointer-events: none;
-  filter: blur(80px);
-}
-
-.hero-glow-1 {
-  width: 400px;
-  height: 400px;
-  top: -100px;
-  right: -100px;
-  background: rgba(212, 119, 155, 0.12);
-}
-
-.hero-glow-2 {
-  width: 300px;
-  height: 300px;
-  bottom: -50px;
-  left: -80px;
-  background: rgba(212, 167, 116, 0.1);
 }
 
 .hero-content {
+  position: relative;
+  z-index: var(--z-content);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-md);
-  z-index: var(--z-content);
+  max-width: 600px;
+  width: 100%;
 }
 
 .hero-heart {
-  font-size: 3.5rem;
-  margin-bottom: var(--space-sm);
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
   filter: drop-shadow(0 0 20px rgba(212, 119, 155, 0.4));
 }
 
-.hero-greeting {
-  font-size: clamp(1.1rem, 4vw, 1.5rem);
-  color: var(--color-primary-light);
-  opacity: 0.9;
-}
-
-.hero-name {
-  font-size: clamp(3.5rem, 14vw, 7rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin: var(--space-sm) 0;
+.hero-title {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  margin-bottom: var(--space-sm);
 }
 
 .hero-subtitle {
-  font-size: clamp(0.9rem, 3vw, 1.15rem);
-  color: var(--color-text-muted);
-  font-weight: 300;
-  letter-spacing: 0.05em;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  color: var(--color-primary-light);
+  opacity: 0.9;
+  margin-bottom: var(--space-2xl);
 }
 
-.hero-divider {
-  height: 2px;
-  background: var(--gradient-primary);
-  margin: var(--space-md) 0;
-  border-radius: var(--radius-full);
-}
-
-/* Countdown */
-.hero-countdown-area {
-  margin: var(--space-lg) 0;
-}
-
-.hero-countdown-label {
-  font-size: 0.85rem;
-  color: var(--color-text-subtle);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: var(--space-md);
-}
-
-.hero-countdown {
-  display: flex;
+.hero-counter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md);
+  width: 100%;
+  margin-bottom: var(--space-xl);
 }
 
-.countdown-item {
+.hero-counter-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 56px;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-sm);
+  gap: var(--space-xs);
 }
 
-.countdown-value {
+.hero-counter-value {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
   font-weight: 700;
   background: var(--gradient-text);
-  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1.1;
+  line-height: 1;
 }
 
-.countdown-label {
-  font-size: 0.7rem;
-  color: var(--color-text-subtle);
+.hero-counter-label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-top: 4px;
 }
 
-/* Birthday message */
-.hero-birthday-message {
+.hero-counter-footer {
+  font-family: var(--font-script);
+  font-size: 1.1rem;
+  color: var(--color-gold-light);
+  opacity: 0.85;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 4px;
+  color: var(--color-text-subtle);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: var(--z-content);
 }
 
-.hero-birthday-emoji {
-  font-size: 3rem;
-  animation: heartbeat 2s ease-in-out infinite;
-}
-
-.hero-birthday-message h2 {
-  font-size: clamp(1.8rem, 6vw, 2.5rem);
-}
-
-.hero-birthday-date {
-  font-family: var(--font-script);
-  color: var(--color-primary-light);
+.hero-scroll-arrow {
   font-size: 1.1rem;
 }
 
-/* CTA */
-.hero-cta {
-  margin-top: var(--space-lg);
-}
-
-.cta-arrow {
-  display: inline-block;
-  animation: float 2s ease-in-out infinite;
-}
-
-/* Scroll Indicator */
-.hero-scroll-indicator {
-  position: absolute;
-  bottom: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--color-primary), transparent);
-  opacity: 0.5;
-}
-
-/* Mobile adjustments */
-@media (max-height: 700px) {
-  .hero-section {
-    padding: var(--space-lg) var(--space-md);
+@media (min-width: 500px) {
+  .hero-counter-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
+}
 
-  .hero-heart {
-    font-size: 2.5rem;
-  }
-
-  .hero-countdown-area {
-    margin: var(--space-md) 0;
+@media (min-width: 768px) {
+  .hero-content {
+    max-width: 700px;
   }
 }

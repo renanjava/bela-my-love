@@ -3,149 +3,97 @@ import { motion } from 'framer-motion';
 import './Hero.css';
 
 /**
- * Hero — Seção de abertura com nome, contagem regressiva e CTA
+ * Hero — Seção de abertura com contador ao vivo de tempo juntos
+ * Início do relacionamento: 26 de Junho de 2026
  */
+
+const START_DATE = new Date(2026, 5, 26, 0, 0, 0); // Mês 5 = Junho (0-indexed)
+
+function getTimeTogether() {
+    const now = new Date();
+    const diffMs = Math.max(0, now - START_DATE);
+
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+    const seconds = Math.floor((diffMs / 1000) % 60);
+
+    return { days, hours, minutes, seconds };
+}
+
 export default function Hero() {
-  const [timeLeft, setTimeLeft] = useState({});
-  const [isBirthday, setIsBirthday] = useState(false);
+    const [time, setTime] = useState(getTimeTogether());
 
-  useEffect(() => {
-    const birthday = new Date('2026-09-15T00:00:00');
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(getTimeTogether());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
-    const updateCountdown = () => {
-      const now = new Date();
-      const diff = birthday - now;
+    const units = [
+        { label: 'Dias', value: time.days },
+        { label: 'Horas', value: time.hours },
+        { label: 'Minutos', value: time.minutes },
+        { label: 'Segundos', value: time.seconds },
+    ];
 
-      if (diff <= 0) {
-        setIsBirthday(true);
-        return;
-      }
+    return (
+        <section className="hero-section" id="hero">
+            <div className="hero-glow" />
 
-      setTimeLeft({
-        dias: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        horas: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutos: Math.floor((diff / (1000 * 60)) % 60),
-        segundos: Math.floor((diff / 1000) % 60),
-      });
-    };
+            <div className="hero-content">
+                <motion.div
+                    className="hero-heart"
+                    animate={{ scale: [1, 1.15, 1] }}
+                    transition={{ duration: 1.8, repeat: Infinity }}
+                >
+                    💕
+                </motion.div>
 
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
+                <motion.h1
+                    className="text-gradient hero-title"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.1 }}
+                >
+                    Renan & Isabela
+                </motion.h1>
 
-  const scrollToContent = () => {
-    const nextSection = document.getElementById('love-letter');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+                <motion.p
+                    className="text-script hero-subtitle"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                    Juntos desde 26 de Junho de 2026
+                </motion.p>
 
-  return (
-    <section className="hero-section" id="hero">
-      {/* Glow decorations */}
-      <div className="hero-glow hero-glow-1" />
-      <div className="hero-glow hero-glow-2" />
+                <motion.div
+                    className="hero-counter-grid"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                    {units.map((unit) => (
+                        <div key={unit.label} className="hero-counter-card glass-card">
+                            <span className="hero-counter-value">
+                                {String(unit.value).padStart(2, '0')}
+                            </span>
+                            <span className="hero-counter-label">{unit.label}</span>
+                        </div>
+                    ))}
+                </motion.div>
 
-      <div className="hero-content">
-        {/* Emoji decorativo */}
-        <motion.div
-          className="hero-heart"
-          animate={{ scale: [1, 1.15, 1, 1.15, 1] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-        >
-          💌
-        </motion.div>
-
-        {/* Saudação */}
-        <motion.p
-          className="hero-greeting text-script"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          Para a mulher mais incrível do mundo
-        </motion.p>
-
-        {/* Nome principal */}
-        <motion.h1
-          className="hero-name"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-        >
-          <span className="text-gradient">Isabela</span>
-        </motion.h1>
-
-        {/* Subtítulo */}
-        <motion.p
-          className="hero-subtitle"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          Uma homenagem da nossa história até hoje
-        </motion.p>
-
-        {/* Divider */}
-        <motion.div
-          className="hero-divider"
-          initial={{ width: 0 }}
-          animate={{ width: 80 }}
-          transition={{ duration: 1, delay: 1.3 }}
-        />
-
-        {/* Contagem regressiva ou Feliz Aniversário */}
-        <motion.div
-          className="hero-countdown-area"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-        >
-          {isBirthday ? (
-            <div className="hero-birthday-message">
-              <span className="hero-birthday-emoji">🎂</span>
-              <h2 className="text-gradient">Feliz 26 Anos!</h2>
-              <p className="hero-birthday-date">15 de Setembro de 2026</p>
+                <motion.p
+                    className="hero-counter-footer"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                >
+                    E contando, a cada segundo... 💖
+                </motion.p>
             </div>
-          ) : (
-            <>
-              <p className="hero-countdown-label">Contagem regressiva para seus 26 anos</p>
-              <div className="hero-countdown">
-                {Object.entries(timeLeft).map(([label, value]) => (
-                  <div key={label} className="countdown-item">
-                    <span className="countdown-value">{String(value).padStart(2, '0')}</span>
-                    <span className="countdown-label">{label}</span>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </motion.div>
-
-        {/* CTA */}
-        <motion.button
-          className="hero-cta btn-primary"
-          onClick={scrollToContent}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Abrir Carta
-          <span className="cta-arrow">↓</span>
-        </motion.button>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="hero-scroll-indicator"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="scroll-line" />
-      </motion.div>
-    </section>
-  );
+        </section>
+    );
 }
