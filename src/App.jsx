@@ -7,7 +7,6 @@ import Family from './components/Family';
 import SpotifySection from './components/SpotifySection';
 import Gallery from './components/Gallery';
 import PinterestCollection from './components/PinterestCollection';
-import ThroneWishlist from './components/ThroneWishlist';
 import FutureTogether from './components/FutureTogether';
 import Footer from './components/Footer';
 
