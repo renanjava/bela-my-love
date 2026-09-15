@@ -10,7 +10,6 @@ import './Birthday.css';
 export default function Birthday() {
   const sectionRef = useRef(null);
   const confettiFired = useRef(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [expandedReasons, setExpandedReasons] = useState({});
 
   useEffect(() => {
@@ -18,31 +17,13 @@ export default function Birthday() {
       ([entry]) => {
         if (entry.isIntersecting && !confettiFired.current) {
           confettiFired.current = true;
-          // Fire confetti!
-          const duration = 3000;
-          const end = Date.now() + duration;
-
-          const frame = () => {
-            confetti({
-              particleCount: 3,
-              angle: 60,
-              spread: 55,
-              origin: { x: 0, y: 0.7 },
-              colors: ['#D4779B', '#F2A6C4', '#D4A574', '#E8B4B8'],
-            });
-            confetti({
-              particleCount: 3,
-              angle: 120,
-              spread: 55,
-              origin: { x: 1, y: 0.7 },
-              colors: ['#D4779B', '#F2A6C4', '#D4A574', '#E8B4B8'],
-            });
-
-            if (Date.now() < end) {
-              requestAnimationFrame(frame);
-            }
-          };
-          frame();
+          confetti({
+            particleCount: 36,
+            spread: 65,
+            startVelocity: 28,
+            origin: { x: 0.5, y: 0.72 },
+            colors: ['#D4779B', '#F2A6C4', '#D4A574', '#E8B4B8'],
+          });
         }
       },
       { threshold: 0.3 }
@@ -53,15 +34,6 @@ export default function Birthday() {
     }
 
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 499px)');
-    const updateViewport = () => setIsMobile(mediaQuery.matches);
-
-    updateViewport();
-    mediaQuery.addEventListener('change', updateViewport);
-    return () => mediaQuery.removeEventListener('change', updateViewport);
   }, []);
 
   const reasons = [
@@ -103,7 +75,7 @@ export default function Birthday() {
             <span className="section-icon">🎂</span>
             <h2 className="text-gradient">26 Razões Para Te Amar</h2>
             <p className="section-subtitle text-script">
-              Um motivo para cada ano da sua vida maravilhosa
+              Clique nos balõezinhos para estourá-los e descobrir um motivo
             </p>
             <div className="section-divider" />
           </div>
@@ -127,21 +99,19 @@ export default function Birthday() {
           {reasons.map((reason, index) => (
             <ScrollReveal key={reason.number} delay={index * 0.03}>
               <details
-                className="reason-card glass-card"
-                open={!isMobile || expandedReasons[reason.number]}
+                className="reason-card reason-balloon-card glass-card"
+                open={expandedReasons[reason.number]}
                 onToggle={(event) => {
-                  if (isMobile) {
-                    const isOpen = event.currentTarget.open;
-                    setExpandedReasons((previous) => ({
-                      ...previous,
-                      [reason.number]: isOpen,
-                    }));
-                  }
+                  const isOpen = event.currentTarget.open;
+                  setExpandedReasons((previous) => ({
+                    ...previous,
+                    [reason.number]: isOpen,
+                  }));
                 }}
               >
                 <summary>
                   <span className="reason-number">{String(reason.number).padStart(2, '0')}</span>
-                  <span className="reason-mobile-label">Razão para te amar</span>
+                  <span className="reason-mobile-label">Clique para estourar</span>
                 </summary>
                 <p className="template-text reason-text">{reason.text}</p>
               </details>
@@ -150,8 +120,16 @@ export default function Birthday() {
         </div>
 
         <ScrollReveal delay={0.3}>
-          <div className="birthday-special glass-card">
-            <span className="birthday-special-emoji">🏛️</span>
+          <div className="birthday-special birthday-house-card glass-card">
+            <div className="birthday-house-illustration" aria-hidden="true">
+              <span className="birthday-house-chimney" />
+              <span className="birthday-house-roof" />
+              <span className="birthday-house-body">
+                <span className="birthday-house-window window-left" />
+                <span className="birthday-house-window window-right" />
+                <span className="birthday-house-door" />
+              </span>
+            </div>
             <p className="text-script birthday-special-text">
               A arquiteta mais talentosa e linda do mundo!
             </p>

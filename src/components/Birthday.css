@@ -21,6 +21,103 @@
   border: 1px solid rgba(212, 167, 116, 0.2);
 }
 
+.birthday-house-card {
+  position: relative;
+  overflow: visible;
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+  background: linear-gradient(145deg, rgba(92, 54, 55, 0.7), rgba(40, 24, 32, 0.92));
+  border-color: rgba(212, 167, 116, 0.45);
+}
+
+.birthday-house-card::before {
+  content: 'UP';
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  color: rgba(232, 201, 160, 0.65);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+}
+
+.birthday-house-illustration {
+  position: relative;
+  width: min(100%, 220px);
+  height: 132px;
+  margin: 0 auto var(--space-md);
+}
+
+.birthday-house-chimney {
+  position: absolute;
+  top: 8px;
+  left: 68%;
+  width: 20px;
+  height: 48px;
+  border: 3px solid #351F2A;
+  border-bottom: 0;
+  background: #9B4A43;
+}
+
+.birthday-house-roof {
+  position: absolute;
+  top: 12px;
+  left: 4%;
+  width: 92%;
+  height: 72px;
+  background: #8D3440;
+  border: 4px solid #E0A04A;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.35));
+}
+
+.birthday-house-body {
+  position: absolute;
+  bottom: 0;
+  left: 14%;
+  width: 72%;
+  height: 78px;
+  border: 4px solid #E0A04A;
+  background: #C76D45;
+  box-shadow: inset 0 0 0 5px rgba(72, 35, 38, 0.18), 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.birthday-house-window,
+.birthday-house-door {
+  position: absolute;
+  border: 3px solid #351F2A;
+  background: #5DB9CA;
+}
+
+.birthday-house-window {
+  top: 18px;
+  width: 24px;
+  height: 24px;
+}
+
+.window-left { left: 14px; }
+.window-right { right: 14px; }
+
+.birthday-house-door {
+  bottom: 0;
+  left: 50%;
+  width: 28px;
+  height: 48px;
+  background: #64313B;
+  transform: translateX(-50%);
+}
+
+.birthday-house-door::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #E0A04A;
+}
+
 .birthday-age {
   font-family: var(--font-display);
   font-size: clamp(4rem, 15vw, 7rem);
@@ -46,7 +143,7 @@
 /* Reasons grid */
 .birthday-reasons-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-md);
   margin-bottom: var(--space-2xl);
 }
@@ -71,7 +168,7 @@
 }
 
 .reason-mobile-label {
-  display: none;
+  display: block;
   color: var(--color-text-muted);
   font-size: 0.78rem;
   font-weight: 500;
@@ -98,6 +195,129 @@
   margin-top: var(--space-sm);
 }
 
+.reason-balloon-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 108px;
+  padding: var(--space-md) var(--space-sm);
+  overflow: visible;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50% 50% 48% 48%;
+  background: #D4779B;
+  box-shadow: inset -10px -12px 18px rgba(0, 0, 0, 0.16), 0 8px 14px rgba(0, 0, 0, 0.24);
+  transition: border-radius var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+}
+
+.reason-balloon-card::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 16px solid currentColor;
+  color: #D4779B;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.18));
+}
+
+.reason-balloon-card::before {
+  content: '';
+  position: absolute;
+  bottom: -52px;
+  left: 50%;
+  width: 1px;
+  height: 52px;
+  border-left: 1px dashed rgba(245, 235, 230, 0.72);
+  transform: translateX(-50%) rotate(var(--string-angle, 0deg));
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.birthday-reasons-grid > *:nth-child(12n + 1) .reason-balloon-card { background: #C6283D; }
+.birthday-reasons-grid > *:nth-child(12n + 1) .reason-balloon-card::after { color: #C6283D; }
+.birthday-reasons-grid > *:nth-child(12n + 2) .reason-balloon-card { background: #E05A24; }
+.birthday-reasons-grid > *:nth-child(12n + 2) .reason-balloon-card::after { color: #E05A24; }
+.birthday-reasons-grid > *:nth-child(12n + 3) .reason-balloon-card { background: #D49A00; }
+.birthday-reasons-grid > *:nth-child(12n + 3) .reason-balloon-card::after { color: #D49A00; }
+.birthday-reasons-grid > *:nth-child(12n + 4) .reason-balloon-card { background: #4C9B32; }
+.birthday-reasons-grid > *:nth-child(12n + 4) .reason-balloon-card::after { color: #4C9B32; }
+.birthday-reasons-grid > *:nth-child(12n + 5) .reason-balloon-card { background: #1479A6; }
+.birthday-reasons-grid > *:nth-child(12n + 5) .reason-balloon-card::after { color: #1479A6; }
+.birthday-reasons-grid > *:nth-child(12n + 6) .reason-balloon-card { background: #6D3FA9; }
+.birthday-reasons-grid > *:nth-child(12n + 6) .reason-balloon-card::after { color: #6D3FA9; }
+.birthday-reasons-grid > *:nth-child(12n + 7) .reason-balloon-card { background: #E11D74; }
+.birthday-reasons-grid > *:nth-child(12n + 7) .reason-balloon-card::after { color: #E11D74; }
+.birthday-reasons-grid > *:nth-child(12n + 8) .reason-balloon-card { background: #B8332A; }
+.birthday-reasons-grid > *:nth-child(12n + 8) .reason-balloon-card::after { color: #B8332A; }
+.birthday-reasons-grid > *:nth-child(12n + 9) .reason-balloon-card { background: #F0B400; }
+.birthday-reasons-grid > *:nth-child(12n + 9) .reason-balloon-card::after { color: #F0B400; }
+.birthday-reasons-grid > *:nth-child(12n + 10) .reason-balloon-card { background: #087F5B; }
+.birthday-reasons-grid > *:nth-child(12n + 10) .reason-balloon-card::after { color: #087F5B; }
+.birthday-reasons-grid > *:nth-child(12n + 11) .reason-balloon-card { background: #2456A6; }
+.birthday-reasons-grid > *:nth-child(12n + 11) .reason-balloon-card::after { color: #2456A6; }
+.birthday-reasons-grid > *:nth-child(12n + 12) .reason-balloon-card { background: #8B3E9C; }
+.birthday-reasons-grid > *:nth-child(12n + 12) .reason-balloon-card::after { color: #8B3E9C; }
+
+.birthday-reasons-grid > *:nth-child(3n + 1) .reason-balloon-card { transform: translateY(8px) rotate(-3deg); }
+.birthday-reasons-grid > *:nth-child(3n + 2) .reason-balloon-card { transform: translateY(-5px) rotate(2deg); }
+.birthday-reasons-grid > *:nth-child(3n) .reason-balloon-card { transform: translateY(12px) rotate(-1deg); }
+
+.reason-balloon-card summary {
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.reason-balloon-card .reason-number {
+  min-width: 0;
+  color: #FFF5F7;
+  font-size: 1.8rem;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.reason-balloon-card .reason-mobile-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.reason-balloon-card[open] {
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, rgba(42, 28, 38, 0.97), rgba(24, 16, 22, 0.97));
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.34);
+}
+
+.birthday-reasons-grid > *:has(.reason-balloon-card[open]) {
+  grid-column: 1 / -1;
+}
+
+.reason-balloon-card[open]::after {
+  display: none;
+}
+
+.reason-balloon-card[open]::before {
+  opacity: 0;
+}
+
+.reason-balloon-card[open] .reason-mobile-label::after {
+  content: ' • revelado';
+  color: var(--color-gold-light);
+}
+
+.reason-balloon-card[open] .reason-text {
+  color: var(--color-text);
+  background: rgba(255, 245, 247, 0.08);
+  border-left-color: var(--color-gold);
+  font-style: normal;
+}
+
 /* Special card */
 .birthday-special {
   text-align: center;
@@ -119,13 +339,13 @@
 
 @media (min-width: 500px) {
   .birthday-reasons-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 499px) {
   .birthday-reasons-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-sm);
   }
 
@@ -133,6 +353,10 @@
     display: block;
     min-width: 0;
     padding: var(--space-md) var(--space-sm);
+  }
+
+  .reason-balloon-card {
+    min-height: 108px;
   }
 
   .reason-card summary {
@@ -146,10 +370,6 @@
     font-size: 1.35rem;
   }
 
-  .reason-mobile-label {
-    display: block;
-  }
-
   .reason-text {
     font-size: 0.78rem;
     line-height: 1.45;
@@ -159,6 +379,11 @@
 
 @media (min-width: 768px) {
   .birthday-reasons-grid {
-    gap: var(--space-lg);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .reason-balloon-card {
+    min-height: 150px;
   }
 }

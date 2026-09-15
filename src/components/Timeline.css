@@ -96,11 +96,11 @@
 
 /* Background floating balloons */
 .up-balloons-bg {
-  position: absolute;
+  position: fixed;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 1;
+  z-index: 20;
 }
 
 .bg-balloon {
@@ -109,6 +109,14 @@
   opacity: 0.15;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
   animation: floatUpSlow 18s ease-in-out infinite alternate;
+}
+
+.up-arrival-balloon {
+  top: auto;
+  bottom: -48px;
+  opacity: 0;
+  animation: none;
+  will-change: opacity, transform;
 }
 
 .balloon-red {
@@ -218,6 +226,22 @@
   height: 2px;
   border-bottom: 2px dashed rgba(212, 167, 116, 0.4);
   margin: var(--space-md) auto 0;
+}
+
+.adventure-up-reference {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  color: var(--color-gold-light);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.adventure-up-reference span {
+  font-family: var(--font-script);
+  font-size: 1rem;
 }
 
 /* Cover Card (Start Card) */
@@ -373,6 +397,27 @@
 .timeline-item {
   position: relative;
   margin-bottom: var(--space-md);
+}
+
+.timeline-month-trigger {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 2px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.timeline-month-heart {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  pointer-events: none;
+  font-size: clamp(2.4rem, 12vw, 4rem);
+  line-height: 1;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.45));
+  transform: translate(-50%, -50%);
 }
 
 .timeline-month-group > :last-child .timeline-item {
@@ -649,5 +694,15 @@
     width: 25%;
     max-width: 260px;
     height: 180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .up-arrival-balloon {
+    display: none;
+  }
+
+  .timeline-month-heart {
+    display: none;
   }
 }

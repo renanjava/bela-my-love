@@ -1,55 +1,37 @@
 import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import ScrollReveal from './ScrollReveal';
 import './FutureTogether.css';
 
-/**
- * FutureTogether — Seção de visão do futuro juntos
- */
+const PLAYLIST_ID = '37pxoq5fxyYdoZ5D94Zs88';
+
 export default function FutureTogether() {
-  const milestones = [
-    {
-      icon: '💑',
-      title: 'Nosso Namoro',
-      period: '2026',
-      description: '[TEMPLATE] O começo de tudo, a base de uma história linda...',
-      status: 'current',
-    },
-    {
-      icon: '💍',
-      title: 'Noivado',
-      period: '[ANO]',
-      description: '[TEMPLATE] O pedido mais especial que ela merece...',
-      status: 'future',
-    },
-    {
-      icon: '👰',
-      title: 'Casamento',
-      period: '[ANO]',
-      description: '[TEMPLATE] O dia mais feliz das nossas vidas...',
-      status: 'future',
-    },
-    {
-      icon: '🏠',
-      title: 'Nossa Casa',
-      period: '[ANO]',
-      description: '[TEMPLATE] Projetada pela melhor arquiteta do mundo — ela mesma...',
-      status: 'future',
-    },
-    {
-      icon: '👶',
-      title: 'Oliver',
-      period: '[ANO]',
-      description: '[TEMPLATE] O pequeno Oliver completa nossa família...',
-      status: 'future',
-    },
-    {
-      icon: '🌟',
-      title: 'Sucesso Total',
-      period: 'Para Sempre',
-      description: '[TEMPLATE] Um casal feliz, bem sucedido, com saúde e muito amor...',
-      status: 'future',
-    },
-  ];
+  const videoStageRef = useRef(null);
+  const [isVideoStageInView, setIsVideoStageInView] = useState(false);
+
+  useEffect(() => {
+    const stage = videoStageRef.current;
+    if (!stage) return undefined;
+
+    const checkVideoVisibility = () => {
+      const { top, bottom } = stage.getBoundingClientRect();
+      if (top < window.innerHeight * 0.85 && bottom > window.innerHeight * 0.15) {
+        setIsVideoStageInView(true);
+        window.removeEventListener('scroll', checkVideoVisibility);
+      }
+    };
+
+    checkVideoVisibility();
+    window.addEventListener('scroll', checkVideoVisibility, { passive: true });
+    return () => window.removeEventListener('scroll', checkVideoVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (!isVideoStageInView) return undefined;
+
+    const timeoutId = window.setTimeout(() => setIsVideoStageInView(false), 3000);
+    return () => window.clearTimeout(timeoutId);
+  }, [isVideoStageInView]);
 
   return (
     <section className="section future-section" id="future">
@@ -57,76 +39,88 @@ export default function FutureTogether() {
       <div className="future-glow-2" />
 
       <div className="section-content">
-        {/*<ScrollReveal>
-          <div className="section-title">
-            <span className="section-icon">🌟</span>
-            <h2 className="text-gradient">Nosso Futuro Juntos</h2>
-            <p className="section-subtitle text-script">O melhor ainda está por vir</p>
-            <div className="section-divider" />
-          </div>
-        </ScrollReveal>
-
-        {/*Future timeline
-        <div className="future-timeline">
-          {milestones.map((milestone, index) => (
-            <ScrollReveal key={index} delay={index * 0.1}>
-              <motion.div
-                className={`future-milestone glass-card ${milestone.status === 'current' ? 'milestone-current' : ''}`}
-                whileHover={{ scale: 1.02, x: 8 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <div className="milestone-icon-wrap">
-                  <span className="milestone-icon">{milestone.icon}</span>
-                  {index < milestones.length - 1 && <div className="milestone-connector" />}
-                </div>
-
-                <div className="milestone-content">
-                  <div className="milestone-header">
-                    <h3 className="milestone-title">{milestone.title}</h3>
-                    <span className="milestone-period">{milestone.period}</span>
-                  </div>
-                  <p className="template-text milestone-desc">{milestone.description}</p>
-                </div>
-              </motion.div>
-            </ScrollReveal>
-          ))}
-        </div>*/}
-
-        {/* Vídeo e mensagem final em uma única lembrança */}
         <ScrollReveal delay={0.3}>
           <div className="onepiece-video-card glass-card">
-            <motion.div
-              animate={{ rotate: [0, -8, 8, 0], y: [0, -6, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="onepiece-video-emojis"
-              aria-hidden="true"
-            >
-              🏴‍☠️💰
-            </motion.div>
+            <div className="onepiece-map-heading">
+              <div className="onepiece-route-art" aria-hidden="true">
+                <span className="route-flag" />
+                <span className="route-ship" />
+                <span className="route-wave" />
+              </div>
+              <div>
+                <span className="onepiece-map-kicker">Rota do nosso tesouro</span>
+                <span className="onepiece-map-caption">Uma história, uma tripulação, um destino</span>
+              </div>
+            </div>
 
-            <video
-              className="future-video"
-              src="/futuretogether/video.mp4"
-              poster="/futuretogether/thumbnail.jpg"
-              controls
-              playsInline
-              preload="metadata"
-            >
-              Seu navegador não suporta a reprodução deste vídeo.
-            </video>
+            <div ref={videoStageRef} className="future-video-stage">
+              <video
+                className="future-video"
+                src="/futuretogether/video.mp4"
+                poster="/futuretogether/thumbnail.jpg"
+                controls
+                playsInline
+                preload="metadata"
+              >
+                Seu navegador não suporta a reprodução deste vídeo.
+              </video>
+            </div>
 
-            <h3 className="text-script onepiece-video-title">
+            <motion.h3
+              className="text-script onepiece-video-title"
+              animate={{ opacity: [0.82, 1, 0.82], scale: [1, 1.015, 1] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+            >
               "Eu vou ser o Rei dos Piratas!", mas o meu One Piece eu já encontrei: você.
-            </h3>
+            </motion.h3>
 
-            <div className="onepiece-footer">
-              <span className="onepiece-flag">🏴‍☠️</span>
-              <span className="onepiece-compass">🧭</span>
-              <span className="onepiece-flag">🏴‍☠️</span>
+            <div className="onepiece-playlist">
+              <div className="onepiece-playlist-heading">
+                <span className="playlist-vinyl" aria-hidden="true" />
+                <div>
+                  <span className="onepiece-playlist-kicker">Trilha da nossa aventura</span>
+                  <span className="onepiece-playlist-title">Nossa Playlist</span>
+                </div>
+              </div>
+              <div className="onepiece-playlist-embed">
+                <iframe
+                  src={`https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=generator`}
+                  title="Playlist da nossa aventura"
+                  loading="lazy"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
+                />
+              </div>
             </div>
           </div>
         </ScrollReveal>
+
+        <svg className="future-video-trail" viewBox="0 0 360 620" aria-hidden="true">
+          <motion.path
+            d="M 38 560 C 8 480, 18 390, 54 330 C 90 270, 36 210, 76 142 C 112 82, 188 58, 246 78 C 290 92, 312 72, 322 32"
+            className="future-video-trail-contrast"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={isVideoStageInView ? { pathLength: 1, opacity: 0.95 } : { pathLength: 0, opacity: 0 }}
+            transition={{ duration: 2.4, ease: 'easeInOut' }}
+          />
+          <motion.path
+            d="M 38 560 C 8 480, 18 390, 54 330 C 90 270, 36 210, 76 142 C 112 82, 188 58, 246 78 C 290 92, 312 72, 322 32"
+            className="future-video-trail-dots"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={isVideoStageInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+            transition={{ duration: 2.4, ease: 'easeInOut' }}
+          />
+          <motion.g
+            className="future-video-trail-x"
+            initial={{ opacity: 0, scale: 0.2 }}
+            animate={isVideoStageInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.2 }}
+            transition={{ delay: 2.4, duration: 0.6, type: 'spring', stiffness: 260 }}
+          >
+            <circle cx="322" cy="32" r="24" />
+            <path d="M 309 20 L 335 46 M 335 20 L 309 46" />
+          </motion.g>
+        </svg>
       </div>
-    </section >
+    </section>
   );
 }

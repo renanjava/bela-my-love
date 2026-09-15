@@ -38,6 +38,66 @@
   object-fit: cover;
 }
 
+.future-video-stage {
+  position: relative;
+  width: min(100%, 280px);
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+}
+
+.future-video-stage .future-video {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.future-video-trail {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  width: min(90vw, 360px);
+  height: min(86vh, 620px);
+  transform: translate(-50%, -50%);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.future-video-trail path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.future-video-trail-contrast {
+  stroke: #FFFFFF;
+  stroke-width: 12;
+  stroke-dasharray: 1 14;
+}
+
+.future-video-trail-dots {
+  stroke: #111111;
+  stroke-width: 5;
+  stroke-dasharray: 1 14;
+}
+
+.future-video-trail-x {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.future-video-trail-x path {
+  stroke: #D62839;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.future-video-trail-x circle {
+  fill: #FFFFFF;
+  stroke: #111111;
+  stroke-width: 4;
+}
+
 .future-video-caption {
   max-width: 500px;
   margin: 0 auto;
@@ -188,13 +248,86 @@
   z-index: -1;
 }
 
-.onepiece-video-emojis {
+.onepiece-map-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  text-align: left;
+}
+
+.onepiece-map-kicker,
+.onepiece-map-caption,
+.onepiece-playlist-kicker,
+.onepiece-playlist-title {
+  display: block;
+}
+
+.onepiece-map-kicker,
+.onepiece-playlist-kicker {
+  color: var(--color-gold-light);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.onepiece-map-caption {
+  margin-top: 3px;
+  color: rgba(255, 245, 247, 0.72);
+  font-family: var(--font-script);
+  font-size: 1rem;
+}
+
+.onepiece-route-art {
   position: relative;
-  z-index: 1;
-  font-size: 2.2rem;
-  line-height: 1;
-  margin-bottom: var(--space-sm);
-  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55));
+  width: 58px;
+  height: 54px;
+  flex: 0 0 auto;
+}
+
+.route-flag {
+  position: absolute;
+  top: 2px;
+  left: 18px;
+  width: 2px;
+  height: 32px;
+  background: #E0A04A;
+}
+
+.route-flag::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 22px;
+  height: 14px;
+  background: #B8332A;
+  clip-path: polygon(0 0, 100% 18%, 72% 50%, 100% 82%, 0 100%);
+}
+
+.route-ship {
+  position: absolute;
+  bottom: 5px;
+  left: 2px;
+  width: 52px;
+  height: 17px;
+  background: #351F2A;
+  border: 2px solid #E0A04A;
+  border-top: 0;
+  border-radius: 0 0 26px 26px;
+  transform: skewX(-12deg);
+}
+
+.route-wave {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32px;
+  height: 8px;
+  border-top: 2px solid #4C9BCA;
+  border-radius: 50%;
 }
 
 .onepiece-video-title {
@@ -205,9 +338,77 @@
   line-height: 1.35;
 }
 
+.onepiece-playlist {
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  border: 1px solid rgba(212, 167, 116, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(15, 12, 10, 0.78);
+  text-align: left;
+}
+
+.onepiece-playlist-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.onepiece-playlist-title {
+  color: #FFF5F7;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+.playlist-vinyl {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, #161616 0 2px, #343434 3px 4px);
+  box-shadow: 0 0 0 2px #E0A04A;
+}
+
+.playlist-vinyl::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #D62839;
+  border: 2px solid #F0C56A;
+}
+
+.onepiece-playlist-embed {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: #000;
+}
+
+.onepiece-playlist-embed iframe {
+  display: block;
+  width: 100%;
+  height: 152px;
+  border: 0;
+}
+
 @media (min-width: 768px) {
   .future-video {
     width: min(100%, 320px);
+  }
+
+  .future-video-stage {
+    width: min(100%, 320px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .future-video-trail {
+    display: none;
   }
 }
 

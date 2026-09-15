@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import timelineData from '../data/timelineData';
 import './Timeline.css';
@@ -11,8 +11,60 @@ const memoryPhotos = [
   '/timeline/photo4.png',
 ];
 
-const MOBILE_CHAR_LIMIT = 150;
+const MOBILE_CHAR_LIMIT = 300;
 const DESKTOP_CHAR_LIMIT = 420;
+const upBalloons = [
+  { left: '4%', delay: 0 },
+  { left: '16%', delay: 0.25 },
+  { left: '30%', delay: 0.08 },
+  { left: '46%', delay: 0.4 },
+  { left: '61%', delay: 0.18 },
+  { left: '74%', delay: 0.5 },
+  { left: '87%', delay: 0.32 },
+  { left: '96%', delay: 0.62 },
+];
+
+function MonthHeart({ month }) {
+  const triggerRef = useRef(null);
+  const isInView = useInView(triggerRef, {
+    once: false,
+    amount: 0.1,
+    margin: '-18% 0px -18% 0px',
+  });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (!isInView) {
+      setIsVisible(false);
+      return undefined;
+    }
+
+    setIsVisible(true);
+    const timeoutId = window.setTimeout(() => setIsVisible(false), 1300);
+    return () => window.clearTimeout(timeoutId);
+  }, [isInView]);
+
+  return (
+    <>
+      <span ref={triggerRef} className="timeline-month-trigger" aria-hidden="true" />
+      <AnimatePresence>
+        {isVisible && (
+          <motion.span
+            key={month}
+            className="timeline-month-heart"
+            initial={{ opacity: 0, scale: 0.35, y: 18, rotate: -12 }}
+            animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+            exit={{ opacity: 0, scale: 1.35, y: -34, rotate: 12 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            aria-hidden="true"
+          >
+            💖
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
 
 /**
  * Timeline — Linha do tempo interativa no estilo "Meu Livro de Aventuras" (Up: Altas Aventuras)
@@ -20,6 +72,32 @@ const DESKTOP_CHAR_LIMIT = 420;
 export default function Timeline() {
   const [expandedItems, setExpandedItems] = useState({});
   const [charLimit, setCharLimit] = useState(MOBILE_CHAR_LIMIT);
+  const timelineIntroRef = useRef(null);
+  const [timelineInView, setTimelineInView] = useState(false);
+
+  useEffect(() => {
+    const intro = timelineIntroRef.current;
+    if (!intro) return undefined;
+
+    const checkIntroVisibility = () => {
+      const { top, bottom } = intro.getBoundingClientRect();
+      if (top < window.innerHeight * 0.85 && bottom > 0) {
+        setTimelineInView(true);
+        window.removeEventListener('scroll', checkIntroVisibility);
+      }
+    };
+
+    checkIntroVisibility();
+    window.addEventListener('scroll', checkIntroVisibility, { passive: true });
+    return () => window.removeEventListener('scroll', checkIntroVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (!timelineInView) return undefined;
+
+    const timeoutId = window.setTimeout(() => setTimelineInView(false), 5600);
+    return () => window.clearTimeout(timeoutId);
+  }, [timelineInView]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 768px)');
@@ -62,18 +140,37 @@ export default function Timeline() {
     <section className="section timeline-section adventure-book-section" id="timeline">
       <div className="timeline-glow" />
 
-      {/* Floating UP Balloons in Background */}
+      {/* One-time UP balloon entrance */}
       <div className="up-balloons-bg" aria-hidden="true">
-        <span className="bg-balloon balloon-red">🎈</span>
-        <span className="bg-balloon balloon-yellow">🎈</span>
-        <span className="bg-balloon balloon-blue">🎈</span>
-        <span className="bg-balloon balloon-purple">🎈</span>
-        <span className="bg-balloon balloon-green">🎈</span>
-        <span className="bg-balloon balloon-orange">🎈</span>
+        <AnimatePresence>
+          {timelineInView && upBalloons.map((balloon, index) => (
+            <motion.span
+              key={index}
+              className="bg-balloon up-arrival-balloon"
+              style={{ left: balloon.left }}
+              initial={{ opacity: 0, y: 80, scale: 0.7, rotate: -8 }}
+              animate={{
+                opacity: [0, 1, 1, 0],
+                y: [80, 0, -window.innerHeight * 0.45, -window.innerHeight - 140],
+                scale: [0.7, 1, 1.05, 0.85],
+                rotate: [-8, 5, -4, 8],
+              }}
+              transition={{ duration: 4.4, delay: balloon.delay, ease: 'easeOut' }}
+            >
+              🎈
+            </motion.span>
+          ))}
+        </AnimatePresence>
       </div>
 
       <div className="section-content">
-        <ScrollReveal>
+        <motion.div
+          ref={timelineIntroRef}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
           <div className="section-title adventure-title-box">
             <span className="section-icon adventure-icon">🎈📖</span>
             <h2 className="text-gradient adventure-header-title">Nosso Livro de Aventuras</h2>
@@ -81,20 +178,9 @@ export default function Timeline() {
               "A aventura está lá fora!" — Carl & Ellie
             </p>
             <div className="adventure-stitched-line" />
+            <div className="adventure-up-reference">🏠 + 🎈 <span>uma aventura para guardar</span></div>
           </div>
-        </ScrollReveal>
-
-        {/* Início: dia que se conheceram */}
-        <ScrollReveal delay={0.1}>
-          <div className="timeline-start adventure-cover-card">
-            <span className="timeline-start-emoji">🎈</span>
-            <h3>26 de Junho de 2026</h3>
-            <p className="text-script timeline-start-text">
-              "Onde começa o nosso capítulo mais bonito..."
-            </p>
-            <div className="house-balloons-mini">🏠🎈</div>
-          </div>
-        </ScrollReveal>
+        </motion.div>
 
         <div className="timeline-memory-section">
 
@@ -114,6 +200,18 @@ export default function Timeline() {
           </div>
         </div>
 
+        {/* Início: dia que se conheceram */}
+        <ScrollReveal delay={0.1}>
+          <div className="timeline-start adventure-cover-card">
+            <span className="timeline-start-emoji">🎈</span>
+            <h3>26 de Junho de 2026</h3>
+            <p className="text-script timeline-start-text">
+              "Onde começa o nosso capítulo mais bonito..."
+            </p>
+            <div className="house-balloons-mini">🏠🎈</div>
+          </div>
+        </ScrollReveal>
+
         {/* Timeline vertical (Estilo Páginas de Álbum do UP) */}
         <div className="timeline-container adventure-timeline">
           <div className="timeline-line adventure-string" />
@@ -125,6 +223,7 @@ export default function Timeline() {
                 <span>{group.month}</span>
                 <span className="tape-effect right-tape" />
               </div>
+              <MonthHeart month={group.month} />
 
               {group.items.map((item, index) => (
                 <ScrollReveal
