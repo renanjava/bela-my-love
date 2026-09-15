@@ -19,6 +19,16 @@ export default function Footer() {
         <p className="footer-message text-script">
           Feito com muito amor para a mulher da minha vida
         </p>
+
+        <div className="timeline-media-list">
+          <div className="timeline-audio-player">
+            <span className="timeline-audio-label">
+              {'Renan cantando pra Bela <3'}
+            </span>
+            <audio src={"public/audio1.ogg"} controls preload="metadata" aria-label='Áudio' />
+            <audio src={"public/audio2.ogg"} controls preload="metadata" aria-label='Áudio '/>
+          </div>
+        </div>
         
         <p className="footer-date">
           Setembro de 2026
