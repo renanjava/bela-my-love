@@ -43,8 +43,12 @@ export default function FutureTogether() {
           <div className="onepiece-video-card glass-card">
             <div className="onepiece-map-heading">
               <div className="onepiece-route-art" aria-hidden="true">
-                <span className="route-flag" />
+                <span className="route-mast" />
+                <span className="route-flag"><span>☠</span></span>
+                <span className="route-sail" />
                 <span className="route-ship" />
+                <span className="route-cabin" />
+                <span className="route-deck" />
                 <span className="route-wave" />
               </div>
               <div>
