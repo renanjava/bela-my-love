@@ -120,7 +120,7 @@ export default function FutureTogether() {
             </motion.div>
 
             <h3 className="text-script closing-title onepiece-title">
-              "Eu vou ser o Rei dos Piratas!" — mas o meu One Piece eu já encontrei: você.
+              "Eu vou ser o Rei dos Piratas!", mas o meu One Piece eu já encontrei: você.
             </h3>
 
             <div className="onepiece-footer">

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import timelineData from '../data/timelineData';
@@ -11,10 +12,14 @@ const bgPhotos = [
   { src: '/timeline/photo5.png', top: '82%', left: '25%' },
 ];
 
+const CHAR_LIMIT = 150; // Limite de caracteres antes do "Ver mais"
+
 /**
  * Timeline — Linha do tempo interativa no estilo "Meu Livro de Aventuras" (Up: Altas Aventuras)
  */
 export default function Timeline() {
+  const [expandedItems, setExpandedItems] = useState({});
+
   // Group items by month
   const months = [];
   let currentMonth = null;
@@ -26,6 +31,20 @@ export default function Timeline() {
     }
     months[months.length - 1].items.push(item);
   });
+
+  const toggleExpand = (itemId) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [itemId]: !prev[itemId],
+    }));
+  };
+
+  const shouldTruncate = (text) => text.length > CHAR_LIMIT;
+
+  const getTruncatedText = (text) => {
+    if (text.length <= CHAR_LIMIT) return text;
+    return text.substring(0, CHAR_LIMIT).trim() + '...';
+  };
 
   return (
     <section className="section timeline-section adventure-book-section" id="timeline">
@@ -107,7 +126,23 @@ export default function Timeline() {
                       </div>
 
                       <h4 className="timeline-title adventure-item-title">{item.title}</h4>
-                      <p className="template-text timeline-desc adventure-desc">{item.description}</p>
+
+                      {/* Descrição com "Ver mais" */}
+                      <div className="adventure-desc-wrapper">
+                        <p className="template-text timeline-desc adventure-desc">
+                          {expandedItems[item.id]
+                            ? item.description
+                            : getTruncatedText(item.description)}
+                        </p>
+                        {shouldTruncate(item.description) && (
+                          <button
+                            className="read-more-btn"
+                            onClick={() => toggleExpand(item.id)}
+                          >
+                            {expandedItems[item.id] ? 'Ver menos' : 'Ver mais'}
+                          </button>
+                        )}
+                      </div>
 
                       {item.images && item.images.length > 0 ? (
                         <div className="timeline-images-carousel">

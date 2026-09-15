@@ -1,35 +1,24 @@
 import ScrollReveal from './ScrollReveal';
 import './SpotifySection.css';
 
-/**
- * SpotifySection — Embed da playlist do casal via Spotify
- * 
- * COMO USAR:
- * 1. Vá no Spotify e abra sua playlist
- * 2. Clique em "Compartilhar" → "Copiar link"
- * 3. Substitua o PLAYLIST_URL abaixo pelo link copiado
- * 
- * O formato do link deve ser algo como:
- * https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M
- */
-
 const PLAYLIST_URL = 'https://open.spotify.com/playlist/37pxoq5fxyYdoZ5D94Zs88?si=fa3e3106de7d463e&pt=2e9fec778e61bac68f71f13d4d041267';
 
 export default function SpotifySection() {
-  // Extract playlist ID from URL
   const getEmbedUrl = (url) => {
     try {
       const parts = url.split('/');
       const playlistIndex = parts.indexOf('playlist');
       if (playlistIndex !== -1 && parts[playlistIndex + 1]) {
         const id = parts[playlistIndex + 1].split('?')[0];
-        return `https://open.spotify.com/embed/playlist/${id}?utm_source=generator&theme=0`;
+        return `https://open.spotify.com/embed/playlist/${id}?utm_source=generator`;
       }
-    } catch {
-      // fallback
+    } catch (error) {
+      console.error('Erro ao extrair ID da playlist:', error);
     }
-    return `https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0`;
+    return `https://open.spotify.com/embed/playlist/37pxoq5fxyYdoZ5D94Zs88?utm_source=generator`;
   };
+
+  const embedUrl = getEmbedUrl(PLAYLIST_URL);
 
   return (
     <section className="section spotify-section" id="spotify">
@@ -60,7 +49,8 @@ export default function SpotifySection() {
 
             <div className="spotify-embed-wrapper">
               <iframe
-                src={getEmbedUrl(PLAYLIST_URL)}
+                key={embedUrl}
+                src={embedUrl}
                 width="100%"
                 height="380"
                 frameBorder="0"
@@ -68,6 +58,7 @@ export default function SpotifySection() {
                 loading="lazy"
                 title="Spotify Playlist"
                 className="spotify-iframe"
+                sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
               />
             </div>
           </div>

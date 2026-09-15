@@ -27,6 +27,14 @@
   z-index: 1;
 }
 
+.timeline-month-label {
+  padding-left: 0.5rem;
+}
+
+.left-tape {
+  margin-left: -0.5rem;
+}
+
 .timeline-section {
   background:
     linear-gradient(180deg,
@@ -73,6 +81,30 @@
   height: auto;
   object-fit: contain;
   display: block;
+}
+
+.adventure-desc-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.read-more-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--color-primary-light);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.read-more-btn:hover {
+  color: var(--color-gold-light);
 }
 
 .timeline-glow {

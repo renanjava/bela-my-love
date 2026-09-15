@@ -65,7 +65,7 @@ const timelineData = [
     date: '01-02 de Agosto',
     month: 'Agosto 2026',
     title: 'Nossa primeira vez dormindo juntos',
-    description: 'Aluguei um Airbnb na frente do terminal pra gente passar uma noite juntos, chegamos lá 14:50, fizemos skincare e jogamos um Uno enquanto isso e também tomamos um vinhozinho, depois a gente se arrumou pra ir assistir Homem Aranha no cinema 21:45, tiramos uma fotinha no espelho antes e fomos no Maringá Park, durante o filme nós brincamos de toda vez que o Homem Aranha soltasse teia a gente dava um selinho kkkkkk, eu até encontrei um amigo meu cabeludo lá, e aí depois que saímos, fomos no Domitilla e compramos dois drinks e tomamos enquanto a gente andava de volta pro Airbnb. O meu era de um morango bem forte e o seu era o de sempre com blueberry (se eu não me engano KKKKKKK)',
+    description: 'Alugamos um Airbnb na frente do terminal pra gente passar uma noite juntos, chegamos lá 14:50, fizemos skincare e jogamos um Uno enquanto isso e também tomamos um vinhozinho, depois a gente se arrumou pra ir assistir Homem Aranha no cinema 21:45, tiramos uma fotinha no espelho antes e fomos no Maringá Park, durante o filme nós brincamos de toda vez que o Homem Aranha soltasse teia a gente dava um selinho kkkkkk, eu até encontrei um amigo meu cabeludo lá, e aí depois que saímos, fomos no Domitilla e compramos dois drinks e tomamos enquanto a gente andava de volta pro Airbnb. O meu era de um morango bem forte e o seu era o de sempre com blueberry (se eu não me engano KKKKKKK)',
     emoji: '🦋',
     images: ['/timeline/dates/ago-01-1.jpg', '/timeline/dates/ago-01-2.jpg', '/timeline/dates/ago-01-3.jpg', '/timeline/dates/ago-01-4.jpg'],
     highlight: true,
