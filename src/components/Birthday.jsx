@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import ScrollReveal from './ScrollReveal';
@@ -10,6 +10,8 @@ import './Birthday.css';
 export default function Birthday() {
   const sectionRef = useRef(null);
   const confettiFired = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [expandedReasons, setExpandedReasons] = useState({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,6 +55,15 @@ export default function Birthday() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 499px)');
+    const updateViewport = () => setIsMobile(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener('change', updateViewport);
+    return () => mediaQuery.removeEventListener('change', updateViewport);
+  }, []);
+
   const reasons = [
     { number: 1, text: 'Razão nº 1 - Ela foi a pessoa que me acolheu da melhor forma possível quando a gente se conheceu' },
     { number: 2, text: 'Razão nº 2 - Ela me faz sorrir quando estou na academia enquanto converso com ela' },
@@ -71,7 +82,7 @@ export default function Birthday() {
     { number: 15, text: 'Razão nº 15 - Ela é esquisita do jeitinho que eu gosto e se ama do jeitinho que ela é' },
     { number: 16, text: 'Razão nº 16 - Ela é atenciosa e percebe detalhes que não percebo e me ajuda a corrigir' },
     { number: 17, text: 'Razão nº 17 - Ela é maravilhosa mesmo sem maquiagem e com o cabelo todo bagunçado' },
-    { number: 18, text: 'Razão nº 18 - Ela tira meu sono quando a gente faz Facetime juntos de madrugada' },
+    { number: 18, text: 'Razão nº 18 - Ela tira meu sono enquanto a gente tem boas conversas pelo Facetime juntos de madrugada' },
     { number: 19, text: 'Razão nº 19 - Ela é amorosa e carinhosa todos os dias e ainda normaliza agir como momoladinhos' },
     { number: 20, text: 'Razão nº 20 - Ela me ensina tudo o que eu não sei e peço para ela, mesmo que ela ache que é coisa besta' },
     { number: 21, text: 'Razão nº 21 - Ela tem paciência comigo e não me julga quando alguém me julgaria' },
@@ -115,14 +126,25 @@ export default function Birthday() {
         <div className="birthday-reasons-grid">
           {reasons.map((reason, index) => (
             <ScrollReveal key={reason.number} delay={index * 0.03}>
-              <motion.div
+              <details
                 className="reason-card glass-card"
-                whileHover={{ scale: 1.03, y: -4 }}
-                transition={{ type: 'spring', stiffness: 400 }}
+                open={!isMobile || expandedReasons[reason.number]}
+                onToggle={(event) => {
+                  if (isMobile) {
+                    const isOpen = event.currentTarget.open;
+                    setExpandedReasons((previous) => ({
+                      ...previous,
+                      [reason.number]: isOpen,
+                    }));
+                  }
+                }}
               >
-                <span className="reason-number">{String(reason.number).padStart(2, '0')}</span>
+                <summary>
+                  <span className="reason-number">{String(reason.number).padStart(2, '0')}</span>
+                  <span className="reason-mobile-label">Razão para te amar</span>
+                </summary>
                 <p className="template-text reason-text">{reason.text}</p>
-              </motion.div>
+              </details>
             </ScrollReveal>
           ))}
         </div>

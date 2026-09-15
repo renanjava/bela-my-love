@@ -58,6 +58,25 @@
   padding: var(--space-lg);
 }
 
+.reason-card summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  list-style: none;
+  cursor: pointer;
+}
+
+.reason-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.reason-mobile-label {
+  display: none;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
 .reason-number {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -73,6 +92,10 @@
 .reason-text {
   font-size: 0.9rem;
   flex: 1;
+}
+
+.reason-card[open] .reason-text {
+  margin-top: var(--space-sm);
 }
 
 /* Special card */
@@ -97,6 +120,40 @@
 @media (min-width: 500px) {
   .birthday-reasons-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 499px) {
+  .birthday-reasons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-sm);
+  }
+
+  .reason-card {
+    display: block;
+    min-width: 0;
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .reason-card summary {
+    justify-content: center;
+    gap: var(--space-xs);
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .reason-number {
+    font-size: 1.35rem;
+  }
+
+  .reason-mobile-label {
+    display: block;
+  }
+
+  .reason-text {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    padding: var(--space-xs) var(--space-sm);
   }
 }
 

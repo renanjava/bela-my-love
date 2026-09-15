@@ -1,24 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import timelineData from '../data/timelineData';
 import './Timeline.css';
 
-const bgPhotos = [
-  { src: '/timeline/photo1.png', top: '5%', left: '15%' },
-  { src: '/timeline/photo2.png', top: '22%', left: '70%' },
-  { src: '/timeline/photo3.png', top: '42%', left: '20%' },
-  { src: '/timeline/photo4.png', top: '62%', left: '75%' },
-  { src: '/timeline/photo5.png', top: '82%', left: '25%' },
+const memoryPhotos = [
+  '/timeline/photo1.png',
+  '/timeline/photo2.png',
+  '/timeline/photo3.png',
+  '/timeline/photo4.png',
 ];
 
-const CHAR_LIMIT = 150; // Limite de caracteres antes do "Ver mais"
+const MOBILE_CHAR_LIMIT = 150;
+const DESKTOP_CHAR_LIMIT = 420;
 
 /**
  * Timeline — Linha do tempo interativa no estilo "Meu Livro de Aventuras" (Up: Altas Aventuras)
  */
 export default function Timeline() {
   const [expandedItems, setExpandedItems] = useState({});
+  const [charLimit, setCharLimit] = useState(MOBILE_CHAR_LIMIT);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const updateCharLimit = () => {
+      setCharLimit(mediaQuery.matches ? DESKTOP_CHAR_LIMIT : MOBILE_CHAR_LIMIT);
+    };
+
+    updateCharLimit();
+    mediaQuery.addEventListener('change', updateCharLimit);
+    return () => mediaQuery.removeEventListener('change', updateCharLimit);
+  }, []);
 
   // Group items by month
   const months = [];
@@ -39,11 +51,11 @@ export default function Timeline() {
     }));
   };
 
-  const shouldTruncate = (text) => text.length > CHAR_LIMIT;
+  const shouldTruncate = (text) => text.length > charLimit;
 
   const getTruncatedText = (text) => {
-    if (text.length <= CHAR_LIMIT) return text;
-    return text.substring(0, CHAR_LIMIT).trim() + '...';
+    if (text.length <= charLimit) return text;
+    return text.substring(0, charLimit).trim() + '...';
   };
 
   return (
@@ -64,7 +76,7 @@ export default function Timeline() {
         <ScrollReveal>
           <div className="section-title adventure-title-box">
             <span className="section-icon adventure-icon">🎈📖</span>
-            <h2 className="text-gradient adventure-header-title">Meu Livro de Aventuras</h2>
+            <h2 className="text-gradient adventure-header-title">Nosso Livro de Aventuras</h2>
             <p className="section-subtitle text-script adventure-subtitle">
               "A aventura está lá fora!" — Carl & Ellie
             </p>
@@ -84,19 +96,35 @@ export default function Timeline() {
           </div>
         </ScrollReveal>
 
+        <div className="timeline-memory-section">
+
+          <div className="timeline-memory-grid">
+            {memoryPhotos.map((src, index) => (
+              <motion.figure
+                key={src}
+                className="timeline-memory-photo"
+                initial={{ opacity: 0, y: 22, rotate: index % 2 === 0 ? -4 : 4 }}
+                whileInView={{ opacity: 1, y: 0, rotate: index % 2 === 0 ? -2 : 2 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.65, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <img src={src} alt={`Registro especial ${index + 1}`} decoding="async" />
+              </motion.figure>
+            ))}
+          </div>
+        </div>
+
         {/* Timeline vertical (Estilo Páginas de Álbum do UP) */}
         <div className="timeline-container adventure-timeline">
           <div className="timeline-line adventure-string" />
 
           {months.map((group) => (
             <div key={group.month} className="timeline-month-group">
-              <ScrollReveal>
-                <div className="timeline-month-label adventure-chapter-tag">
-                  <span className="tape-effect left-tape" />
-                  <span>{group.month}</span>
-                  <span className="tape-effect right-tape" />
-                </div>
-              </ScrollReveal>
+              <div className="timeline-month-label adventure-chapter-tag">
+                <span className="tape-effect left-tape" />
+                <span>{group.month}</span>
+                <span className="tape-effect right-tape" />
+              </div>
 
               {group.items.map((item, index) => (
                 <ScrollReveal
@@ -181,28 +209,6 @@ export default function Timeline() {
           </ScrollReveal>
         </div>
 
-        <div className="timeline-photos-bg" aria-hidden="true">
-          {bgPhotos.map((photo) => (
-            <motion.img
-              key={photo.src}
-              src={photo.src}
-              alt=""
-              className="timeline-bg-photo"
-              style={{ top: photo.top, left: photo.left }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{
-                opacity: [0, 1, 1, 0],
-                scale: [0.9, 1, 1, 0.9],
-              }}
-              viewport={{ once: false, margin: '-150px' }}
-              transition={{
-                duration: 2.6,
-                times: [0, 0.15, 0.85, 1],
-                ease: 'easeInOut',
-              }}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );

@@ -92,34 +92,30 @@ export default function FutureTogether() {
           ))}
         </div>*/}
 
-        {/* Vídeo de finalização */}
+        {/* Vídeo e mensagem final em uma única lembrança */}
         <ScrollReveal delay={0.3}>
-          <div className="future-video-wrap glass-card">
+          <div className="onepiece-video-card glass-card">
+            <motion.div
+              animate={{ rotate: [0, -8, 8, 0], y: [0, -6, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="onepiece-video-emojis"
+              aria-hidden="true"
+            >
+              🏴‍☠️💰
+            </motion.div>
+
             <video
               className="future-video"
               src="/futuretogether/video.mp4"
+              poster="/futuretogether/thumbnail.jpg"
               controls
               playsInline
               preload="metadata"
             >
               Seu navegador não suporta a reprodução deste vídeo.
             </video>
-          </div>
-        </ScrollReveal>
 
-        {/* Closing message */}
-        <ScrollReveal delay={0.4}>
-          <div className="future-closing onepiece-closing glass-card">
-
-            <motion.div
-              animate={{ rotate: [0, -8, 8, 0], y: [0, -6, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="closing-heart onepiece-treasure"
-            >
-              🏴‍☠️💰
-            </motion.div>
-
-            <h3 className="text-script closing-title onepiece-title">
+            <h3 className="text-script onepiece-video-title">
               "Eu vou ser o Rei dos Piratas!", mas o meu One Piece eu já encontrei: você.
             </h3>
 

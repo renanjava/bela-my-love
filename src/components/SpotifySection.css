@@ -1,6 +1,7 @@
 .spotify-section {
   background: var(--color-bg-darker);
-  padding-bottom: var(--space-4xl);
+  min-height: auto;
+  padding-bottom: var(--space-2xl);
 }
 
 .spotify-glow {

@@ -52,19 +52,37 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.h1
-                    className="text-gradient hero-title"
+                    className="text-gradient hero-birthday-title"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
                 >
-                    Renan & Isabela
+                    Feliz aniversário, Isabela!
                 </motion.h1>
+
+                <motion.p
+                    className="text-script hero-birthday-age"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                    26 anos!
+                </motion.p>
+
+                <motion.h2
+                    className="hero-title"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                    Renan & Isabela
+                </motion.h2>
 
                 <motion.p
                     className="text-script hero-subtitle"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
                 >
                     Juntos desde 26 de Junho de 2026
                 </motion.p>
@@ -73,7 +91,7 @@ export default function Hero() {
                     className="hero-counter-grid"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
                 >
                     {units.map((unit) => (
                         <div key={unit.label} className="hero-counter-card glass-card">
@@ -89,9 +107,9 @@ export default function Hero() {
                     className="hero-counter-footer"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
+                    transition={{ duration: 0.8, delay: 0.9 }}
                 >
-                    E contando, a cada segundo... 💖
+                    A gente se conheceu no dia 26 do mês 06 de 2026... e você vai fazer 26 anos. Coincidência? 💖
                 </motion.p>
             </div>
         </section>
