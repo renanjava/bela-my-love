@@ -15,10 +15,6 @@ export default function Footer() {
         >
           💕
         </motion.div>
-        
-        <p className="footer-message text-script">
-          Feito com muito amor para a mulher da minha vida
-        </p>
 
         <div className="timeline-media-list">
           <div className="timeline-audio-player">
@@ -29,6 +25,10 @@ export default function Footer() {
             <audio src={"public/audio2.ogg"} controls preload="metadata" aria-label='Áudio '/>
           </div>
         </div>
+
+         <p className="footer-message text-script">
+          Feito com muito amor para a mulher da minha vida
+        </p>
         
         <p className="footer-date">
           Setembro de 2026
