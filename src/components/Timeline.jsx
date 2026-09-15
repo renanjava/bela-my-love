@@ -184,13 +184,28 @@ export default function Timeline() {
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div className="section-title adventure-title-box">
-            <span className="section-icon adventure-icon">🎈📖</span>
-            <h2 className="text-gradient adventure-header-title">Nosso Livro de Aventuras</h2>
-            <p className="section-subtitle text-script adventure-subtitle">
-              "A aventura está lá fora!" — Carl & Ellie
-            </p>
-            <div className="adventure-stitched-line" />
-            <div className="adventure-up-reference">🏠 + 🎈 <span>uma aventura para guardar</span></div>
+            <div className="adventure-book-cover">
+              <span className="adventure-book-spine" />
+              <span className="adventure-book-corner corner-top" />
+              <span className="adventure-book-corner corner-bottom" />
+              <div className="adventure-book-meta">
+                <span>Álbum de memórias</span>
+                <span>26.06.2026</span>
+              </div>
+              <div className="adventure-book-art" aria-hidden="true">
+                <span className="book-art-balloon balloon-one" />
+                <span className="book-art-balloon balloon-two" />
+                <span className="book-art-house" />
+                <span className="book-art-boat" />
+              </div>
+              <span className="adventure-book-chapter">Capítulo I</span>
+              <h2 className="text-gradient adventure-header-title">Nosso Livro de Aventuras</h2>
+              <p className="section-subtitle text-script adventure-subtitle">
+                "A aventura está lá fora!" — Carl & Ellie
+              </p>
+              <div className="adventure-stitched-line" />
+              <div className="adventure-up-reference">Uma aventura para guardar</div>
+            </div>
           </div>
         </motion.div>
 

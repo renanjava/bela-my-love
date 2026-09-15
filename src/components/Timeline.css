@@ -188,6 +188,159 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.adventure-book-cover {
+  position: relative;
+  width: min(100%, 560px);
+  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+  overflow: hidden;
+  border: 2px solid #D4A574;
+  border-radius: 5px 12px 12px 5px;
+  background: linear-gradient(135deg, #542F3C 0%, #321D2A 55%, #241722 100%);
+  box-shadow: 12px 14px 0 rgba(16, 10, 15, 0.32), inset 10px 0 0 rgba(212, 167, 116, 0.12), inset 0 0 0 6px rgba(255, 245, 247, 0.04);
+}
+
+.adventure-book-cover::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(232, 201, 160, 0.34);
+  border-radius: 2px 8px 8px 2px;
+  pointer-events: none;
+}
+
+.adventure-book-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 18px;
+  width: 7px;
+  border-right: 1px solid rgba(232, 201, 160, 0.45);
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
+  background: rgba(212, 167, 116, 0.12);
+}
+
+.adventure-book-corner {
+  position: absolute;
+  right: 22px;
+  width: 34px;
+  height: 34px;
+  border-color: rgba(232, 201, 160, 0.7);
+  border-style: solid;
+}
+
+.corner-top { top: 22px; border-width: 2px 2px 0 0; }
+.corner-bottom { bottom: 22px; border-width: 0 2px 2px 0; }
+
+.adventure-book-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 16px;
+  color: rgba(232, 201, 160, 0.72);
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.adventure-book-art {
+  position: relative;
+  z-index: 1;
+  height: 76px;
+  margin: var(--space-md) 20% 0 16%;
+  border-bottom: 2px solid rgba(232, 201, 160, 0.48);
+}
+
+.book-art-balloon {
+  position: absolute;
+  width: 22px;
+  height: 28px;
+  border-radius: 50% 50% 48% 48%;
+  border: 2px solid rgba(255, 245, 247, 0.65);
+  box-shadow: inset -5px -4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.book-art-balloon::after {
+  content: '';
+  position: absolute;
+  top: 26px;
+  left: 9px;
+  width: 1px;
+  height: 34px;
+  background: rgba(232, 201, 160, 0.7);
+}
+
+.balloon-one { top: 3px; left: 20%; background: #C6283D; transform: rotate(-10deg); }
+.balloon-two { top: 16px; right: 18%; background: #1479A6; transform: rotate(9deg); }
+
+.book-art-house {
+  position: absolute;
+  bottom: 0;
+  left: 43%;
+  width: 40px;
+  height: 34px;
+  border: 2px solid #D4A574;
+  background: #9B4A43;
+}
+
+.book-art-house::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: -7px;
+  width: 50px;
+  height: 28px;
+  background: #7D3038;
+  border: 2px solid #D4A574;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.book-art-boat {
+  position: absolute;
+  right: 2%;
+  bottom: 3px;
+  width: 42px;
+  height: 13px;
+  border-bottom: 3px solid #D4A574;
+  border-radius: 0 0 24px 24px;
+  transform: skewX(-15deg);
+}
+
+.book-art-boat::before {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  width: 1px;
+  height: 24px;
+  background: #D4A574;
+}
+
+.book-art-boat::after {
+  content: '';
+  position: absolute;
+  bottom: 14px;
+  left: 21px;
+  border-right: 18px solid #C76D45;
+  border-top: 9px solid transparent;
+}
+
+.adventure-book-chapter {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin-top: var(--space-lg);
+  padding: 4px 12px;
+  border: 1px solid rgba(232, 201, 160, 0.52);
+  color: var(--color-gold-light);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .adventure-badge {
@@ -223,18 +376,25 @@
 }
 
 .adventure-header-title {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  margin-top: var(--space-md);
+  font-size: clamp(2rem, 7vw, 2.8rem);
   letter-spacing: 0.02em;
 }
 
 .adventure-subtitle {
+  position: relative;
+  z-index: 1;
   font-size: 1.25rem;
   color: var(--color-gold-light);
   margin-top: 4px;
 }
 
 .adventure-stitched-line {
+  position: relative;
+  z-index: 1;
   width: 120px;
   height: 2px;
   border-bottom: 2px dashed rgba(212, 167, 116, 0.4);
@@ -242,12 +402,14 @@
 }
 
 .adventure-up-reference {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
   margin-top: var(--space-sm);
   color: var(--color-gold-light);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   letter-spacing: 0.04em;
   opacity: 0.85;
 }
