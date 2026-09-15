@@ -196,11 +196,6 @@ a:hover {
   transition: all var(--transition-base);
 }
 
-.glass-card:hover {
-  border-color: var(--color-border-hover);
-  box-shadow: var(--shadow-glow);
-  background: var(--color-bg-glass-hover);
-}
 
 /* ---- Section Layout ---- */
 .section {
