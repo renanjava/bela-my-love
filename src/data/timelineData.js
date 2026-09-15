@@ -23,6 +23,7 @@ const timelineData = [
       '/timeline/dates/jun-27-1.jpg',
       '/timeline/dates/jun-27-3.jpg',
     ],
+    video: '/timeline/dates/jun-27-4.mp4',
     highlight: true,
   },
 
@@ -98,6 +99,8 @@ const timelineData = [
     description: 'Do fim de semana anterior, a gente já combinou de ir no Race Park na próxima semana. fui aí na sexta-feira, 17:40 eu tava no ponto de ônibus e levei meu notebook pra trabalhar um pouco lá, como o ponto da faculdade é do lado, o Victor viu e me zoou que home office não é mil maravilhas kkkkk, na sexta-feira dormi na sua casa, levei meu perfume Cardamom que sua mãe amou (você até gravou um audio escondido dela elogiando) e deixei o frasco ai. No sábado, a gente, antes de ir no Race Park, passamos na Área 51 pra comer um lanche, o meu eu acabei não gostando por causa da maionese branca e o seu tinha um bacon muito gorduroso, a gente tirou umas fotinhas no meme lá porque o lugar era muito bonito. No race park (depois de ter roubado a jaqueta de couro do seu pai) a gente ficou vendo os drifts, as batalhas de ronco, os carrões, compramos uns adesivos e tentamos tirar umas fotos pra postar no feed (quase deu certo). Fomos embora e você dormiu em casa, como eu tava sem sono, eu fui jogar um pouquinho enquanto você dormia, depois de 1 hora e pouco, desliguei e fui dormir, fiquei com muita dó de te acordar, mas te acordei, e nesse momento eu percebi que eu amo te ver com soninho e nesse dia a gente bateu o martelo pro nosso novo apelido "momo" que deu muito certo e a gente usa até hoje, substituimos qualquer outra gíria como "mano/vei/cara" por "momo"',
     emoji: '🎵',
     images: ["/timeline/dates/ago-22-1.jpg", "/timeline/dates/ago-22-2.jpg", "/timeline/dates/ago-22-3.jpg", "/timeline/dates/ago-22-4.jpg", "/timeline/dates/ago-22-5.jpg", "/timeline/dates/ago-22-6.jpg"],
+    audio: '/timeline/dates/ago-22-7.ogg',
+    audioLabel: 'Marizete falando do perfume do Renan',
     highlight: false,
   },
   {

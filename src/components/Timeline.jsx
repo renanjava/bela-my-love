@@ -71,6 +71,7 @@ function MonthHeart({ month }) {
  */
 export default function Timeline() {
   const [expandedItems, setExpandedItems] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
   const [charLimit, setCharLimit] = useState(MOBILE_CHAR_LIMIT);
   const timelineIntroRef = useRef(null);
   const [timelineInView, setTimelineInView] = useState(false);
@@ -91,6 +92,17 @@ export default function Timeline() {
     window.addEventListener('scroll', checkIntroVisibility, { passive: true });
     return () => window.removeEventListener('scroll', checkIntroVisibility);
   }, []);
+
+  useEffect(() => {
+    if (!selectedImage) return undefined;
+
+    const closeWithEscape = (event) => {
+      if (event.key === 'Escape') setSelectedImage(null);
+    };
+
+    window.addEventListener('keydown', closeWithEscape);
+    return () => window.removeEventListener('keydown', closeWithEscape);
+  }, [selectedImage]);
 
   useEffect(() => {
     if (!timelineInView) return undefined;
@@ -255,7 +267,20 @@ export default function Timeline() {
                       <h4 className="timeline-title adventure-item-title">{item.title}</h4>
 
                       {/* Descrição com "Ver mais" */}
-                      <div className="adventure-desc-wrapper">
+                      <div
+                        className="adventure-desc-wrapper adventure-desc-clickable"
+                        onClick={() => toggleExpand(item.id)}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            toggleExpand(item.id);
+                          }
+                        }}
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={expandedItems[item.id] || false}
+                        aria-label={expandedItems[item.id] ? 'Recolher descrição' : 'Expandir descrição'}
+                      >
                         <p className="template-text timeline-desc adventure-desc">
                           {expandedItems[item.id]
                             ? item.description
@@ -264,29 +289,83 @@ export default function Timeline() {
                         {shouldTruncate(item.description) && (
                           <button
                             className="read-more-btn"
-                            onClick={() => toggleExpand(item.id)}
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              toggleExpand(item.id);
+                            }}
                           >
                             {expandedItems[item.id] ? 'Ver menos' : 'Ver mais'}
                           </button>
                         )}
                       </div>
 
+                      {item.audio && (
+                        <div className="timeline-media-list">
+                          <div className="timeline-audio-player">
+                            <span className="timeline-audio-label">
+                              {item.audioLabel || 'Áudio deste momento'}
+                            </span>
+                            <audio src={item.audio} controls preload="metadata" aria-label={item.audioLabel || `Áudio de ${item.title}`} />
+                          </div>
+                        </div>
+                      )}
+
                       {item.images && item.images.length > 0 ? (
                         <div className="timeline-images-carousel">
                           {item.images.map((imgSrc, imgIndex) => (
-                            <div key={imgIndex} className="timeline-image adventure-photo-frame">
+                            <div
+                              key={imgIndex}
+                              className="timeline-image adventure-photo-frame"
+                              onClick={() => setSelectedImage({ src: imgSrc, alt: `${item.title} - foto ${imgIndex + 1}` })}
+                              onKeyDown={(event) => {
+                                if (event.key === 'Enter' || event.key === ' ') {
+                                  event.preventDefault();
+                                  setSelectedImage({ src: imgSrc, alt: `${item.title} - foto ${imgIndex + 1}` });
+                                }
+                              }}
+                              role="button"
+                              tabIndex={0}
+                              aria-label={`Expandir ${item.title} - foto ${imgIndex + 1}`}
+                            >
                               <img src={imgSrc} alt={`${item.title} - foto ${imgIndex + 1}`} />
                             </div>
                           ))}
                         </div>
                       ) : item.image ? (
-                        <div className="timeline-image adventure-photo-frame">
+                        <div
+                          className="timeline-image adventure-photo-frame"
+                          onClick={() => setSelectedImage({ src: item.image, alt: item.title })}
+                          onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault();
+                              setSelectedImage({ src: item.image, alt: item.title });
+                            }
+                          }}
+                          role="button"
+                          tabIndex={0}
+                          aria-label={`Expandir ${item.title}`}
+                        >
                           <img src={item.image} alt={item.title} />
                         </div>
                       ) : (
                         <div className="timeline-image-placeholder adventure-photo-placeholder">
                           <span>📷</span>
                           <p>Espaço reservado para nossa foto de aventura</p>
+                        </div>
+                      )}
+
+                      {item.video && (
+                        <div className="timeline-media-list">
+                          <video
+                            className="timeline-inline-video"
+                            src={item.video}
+                            controls
+                            playsInline
+                            preload="metadata"
+                            aria-label={`Vídeo de ${item.title}`}
+                          >
+                            Seu navegador não suporta a reprodução deste vídeo.
+                          </video>
                         </div>
                       )}
                     </motion.div>
@@ -307,6 +386,39 @@ export default function Timeline() {
             </div>
           </ScrollReveal>
         </div>
+
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              className="timeline-image-lightbox"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              role="presentation"
+            >
+              <motion.div
+                className="timeline-image-lightbox-content"
+                initial={{ scale: 0.92, y: 12 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.92, y: 12 }}
+                onClick={(event) => event.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Imagem ampliada"
+              >
+                <button
+                  className="timeline-image-lightbox-close"
+                  onClick={() => setSelectedImage(null)}
+                  aria-label="Fechar imagem ampliada"
+                >
+                  X
+                </button>
+                <img src={selectedImage.src} alt={selectedImage.alt} />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>
