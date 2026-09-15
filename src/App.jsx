@@ -20,10 +20,10 @@ function App() {
         <Hero />
         <Timeline />
         <Birthday />
-        <Family />
+        {/*<Family />*/}
         <SpotifySection />
-        <Gallery />
-        <PinterestCollection />
+        {/*<Gallery />
+        <PinterestCollection />*/}
         <FutureTogether />
       </main>
 

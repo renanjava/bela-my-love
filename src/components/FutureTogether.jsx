@@ -57,7 +57,7 @@ export default function FutureTogether() {
       <div className="future-glow-2" />
 
       <div className="section-content">
-        <ScrollReveal>
+        {/*<ScrollReveal>
           <div className="section-title">
             <span className="section-icon">🌟</span>
             <h2 className="text-gradient">Nosso Futuro Juntos</h2>
@@ -66,7 +66,7 @@ export default function FutureTogether() {
           </div>
         </ScrollReveal>
 
-        {/* Future timeline */}
+        {/*Future timeline
         <div className="future-timeline">
           {milestones.map((milestone, index) => (
             <ScrollReveal key={index} delay={index * 0.1}>
@@ -90,7 +90,7 @@ export default function FutureTogether() {
               </motion.div>
             </ScrollReveal>
           ))}
-        </div>
+        </div>*/}
 
         {/* Vídeo de finalização */}
         <ScrollReveal delay={0.3}>
@@ -104,19 +104,12 @@ export default function FutureTogether() {
             >
               Seu navegador não suporta a reprodução deste vídeo.
             </video>
-            <p className="template-text future-video-caption">
-              [TEMPLATE] Um vídeo especial pra guardar esse momento pra sempre...
-            </p>
           </div>
         </ScrollReveal>
 
         {/* Closing message */}
         <ScrollReveal delay={0.4}>
           <div className="future-closing onepiece-closing glass-card">
-            <div className="onepiece-badge">
-              <span className="strawhat-icon" title="Chapéu de Palha">👒</span>
-              <span className="onepiece-ribbon">NAKAMA FOR LIFE</span>
-            </div>
 
             <motion.div
               animate={{ rotate: [0, -8, 8, 0], y: [0, -6, 0] }}
@@ -127,15 +120,8 @@ export default function FutureTogether() {
             </motion.div>
 
             <h3 className="text-script closing-title onepiece-title">
-              [TEMPLATE] "Eu vou ser o Rei dos Piratas!" — mas o meu One Piece eu já encontrei: você.
+              "Eu vou ser o Rei dos Piratas!" — mas o meu One Piece eu já encontrei: você.
             </h3>
-
-            <p className="template-text closing-text onepiece-text">
-              [ESCREVA AQUI] Navegamos a Grand Line da vida como verdadeiros nakama, e não importa
-              quantas tempestades ou marinheiros tentem nos separar — nosso Going Merry sempre segue
-              em frente. O maior tesouro nunca esteve escondido em uma ilha perdida: ele estava em
-              cada dia ao seu lado. Rumo ao nosso próprio One Piece, juntos, até o fim da Grand Line...
-            </p>
 
             <div className="onepiece-footer">
               <span className="onepiece-flag">🏴‍☠️</span>
@@ -145,6 +131,6 @@ export default function FutureTogether() {
           </div>
         </ScrollReveal>
       </div>
-    </section>
+    </section >
   );
 }
